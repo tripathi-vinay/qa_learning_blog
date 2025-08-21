@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Manual QA Testing Course</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: #333; 
+            margin: 0; 
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* Navigation Bar */
+        .nav-bar {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+        }
+        .visitor-counter {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 2px solid #1e3c72;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            .nav-bar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-btn {
+                padding: 0.8rem 2rem;
+                width: 100%;
+                max-width: 250px;
+            }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .topic-section { padding: 1.5rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .container { padding: 5px; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.3rem; }
+            .topic-section { padding: 1rem; margin: 1rem 0; }
+            .test-case { font-size: 0.9rem; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+        }
+        header { 
+            background: rgba(255,255,255,0.95); 
+            color: #333; 
+            padding: 3rem 2rem; 
+            text-align: center; 
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .topic-section { 
+            background: rgba(255,255,255,0.95); 
+            margin: 2rem 0; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
+            padding: 2.5rem; 
+            border-left: 6px solid #667eea;
+        }
+        h1 { color: #667eea; font-size: 2.5em; margin-bottom: 0.5rem; }
+        h2 { color: #764ba2; font-size: 1.8em; margin-bottom: 1rem; border-bottom: 3px solid #667eea; padding-bottom: 0.5rem; }
+        h3 { color: #667eea; font-size: 1.3em; margin-top: 1.5rem; }
+        .example { 
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); 
+            border-left: 5px solid #2196f3; 
+            padding: 1.5rem; 
+            margin: 1.5rem 0; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
+        }
+        .gui-example { 
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); 
+            border-left: 5px solid #9c27b0; 
+            padding: 1.5rem; 
+            margin: 1.5rem 0; 
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.2);
+        }
+        .interview-section { 
+            background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 30%); 
+            border-left: 5px solid #ff9800; 
+            padding: 2rem; 
+            margin: 2rem 0; 
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);
+        }
+        .test-case { 
+            background: #f8f9fa; 
+            border: 2px solid #28a745; 
+            padding: 1rem; 
+            margin: 1rem 0; 
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+        }
+        ul, ol { margin-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        .highlight { background: #ffeb3b; padding: 2px 6px; border-radius: 4px; }
+        .tip { 
+            background: #e8f5e8; 
+            border-left: 4px solid #4caf50; 
+            padding: 1rem; 
+            margin: 1rem 0; 
+            border-radius: 6px;
+            font-style: italic;
+        }
+        
+        /* Responsive Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            overflow-x: auto;
+            display: block;
+            white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                font-size: 0.9rem;
+            }
+            ul, ol { margin-left: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">🏠 Home</a>
+                <a href="comprehensive-manual-qa-course.html" class="nav-btn">📚 Manual QA</a>
+                <a href="comprehensive-automation-qa-course.html" class="nav-btn">🤖 Automation QA</a>
+                <a href="excel-for-testing.html" class="nav-btn">📊 Excel for Testing</a>
+            </div>
+            <div class="visitor-counter">
+                👥 Visitors: <span id="visitorCount">Loading...</span>
+            </div>
+        </nav>
+
+        <header>
+            <h1>🎯 Complete Manual QA Testing Course</h1>
+            <p style="font-size: 1.2em; margin-top: 1rem;">Master Software Testing from Beginner to Professional Level</p>
+            <p>Designed for students with real-world examples and practical scenarios</p>
+        </header>
+
+        <div class="topic-section">
+            <h2>📚 1. Introduction to Software Testing</h2>
+            <p><strong>What is Software Testing?</strong></p>
+            <p>Software testing is like being a detective 🕵️‍♂️ - you're looking for problems (bugs) in software before users find them. Think of it as quality control for digital products.</p>
+            
+            <div class="gui-example">
+                <h3>🖥️ Real GUI Example: Testing Facebook Login</h3>
+                <p><strong>Scenario:</strong> You're testing Facebook's login page</p>
+                <ul>
+                    <li><strong>What you see:</strong> Username field, Password field, "Log In" button</li>
+                    <li><strong>What you test:</strong> Can users actually log in? What happens with wrong passwords?</li>
+                    <li><strong>Why it matters:</strong> If login doesn't work, nobody can use Facebook!</li>
+                </ul>
+            </div>
+
+            <h3>🎯 Why Do We Need Testing?</h3>
+            <ul>
+                <li><strong>Prevent disasters:</strong> Imagine if WhatsApp sent your messages to wrong people!</li>
+                <li><strong>Save money:</strong> Fixing bugs after release costs 10x more</li>
+                <li><strong>User satisfaction:</strong> Nobody likes apps that crash</li>
+                <li><strong>Brand reputation:</strong> One major bug can ruin a company's image</li>
+            </ul>
+
+            <div class="tip">
+                💡 <strong>Fun Fact:</strong> A software bug once caused a NASA spacecraft to crash into Mars because of a unit conversion error (feet vs meters)!
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🔄 2. SDLC (Software Development Life Cycle) & STLC (Software Testing Life Cycle)</h2>
+            
+            <h3>🏗️ SDLC - Like Building a House</h3>
+            <div class="example">
+                <strong>Think of building a house:</strong>
+                <ol>
+                    <li><strong>Planning:</strong> Decide what kind of house (Requirements)</li>
+                    <li><strong>Design:</strong> Create blueprints (System Design)</li>
+                    <li><strong>Construction:</strong> Actually build it (Development)</li>
+                    <li><strong>Inspection:</strong> Check everything works (Testing)</li>
+                    <li><strong>Moving in:</strong> Start living there (Deployment)</li>
+                    <li><strong>Maintenance:</strong> Fix issues, renovate (Maintenance)</li>
+                </ol>
+            </div>
+
+            <h3>🧪 STLC - The Testing Journey</h3>
+            <div class="gui-example">
+                <h3>Example: Testing Instagram's Photo Upload Feature</h3>
+                <ol>
+                    <li><strong>Test Planning:</strong> "We need to test photo uploads on mobile and web"</li>
+                    <li><strong>Test Case Design:</strong> Write scenarios like "Upload JPG file", "Upload very large file"</li>
+                    <li><strong>Test Environment Setup:</strong> Get test phones, test accounts</li>
+                    <li><strong>Test Execution:</strong> Actually try uploading different types of photos</li>
+                    <li><strong>Bug Reporting:</strong> "Large files crash the app" - report this bug</li>
+                    <li><strong>Test Closure:</strong> All critical bugs fixed, feature ready!</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🎯 3. Types of Testing Explained</h2>
+
+            <h3>🔧 Functional Testing</h3>
+            <p><em>"Does the feature work as intended?"</em></p>
+            <div class="gui-example">
+                <h3>Example: Testing YouTube's Search Function</h3>
+                <ul>
+                    <li><strong>Test:</strong> Type "funny cats" in search box, press Enter</li>
+                    <li><strong>Expected:</strong> Shows videos about funny cats</li>
+                    <li><strong>What we check:</strong> Search works, results are relevant, page loads properly</li>
+                </ul>
+            </div>
+
+            <h3>⚡ Non-Functional Testing</h3>
+            <p><em>"How well does it work?"</em></p>
+            <div class="example">
+                <strong>Performance Testing Example - Netflix:</strong>
+                <ul>
+                    <li><strong>Speed:</strong> How fast do movies start playing?</li>
+                    <li><strong>Load:</strong> Can 1 million people watch at the same time?</li>
+                    <li><strong>Security:</strong> Is your payment info safe?</li>
+                    <li><strong>Usability:</strong> Can your grandmother easily find movies?</li>
+                </ul>
+            </div>
+
+            <h3>🔄 Regression Testing</h3>
+            <p><em>"Did we break something that was working before?"</em></p>
+            <div class="gui-example">
+                <h3>Real Scenario: WhatsApp Update</h3>
+                <p><strong>Situation:</strong> WhatsApp adds new emoji reactions</p>
+                <p><strong>Regression Testing:</strong> Make sure existing features still work:</p>
+                <ul>
+                    <li>Can you still send messages? ✅</li>
+                    <li>Do old emojis still work? ✅</li>
+                    <li>Can you still make calls? ✅</li>
+                    <li>Do photos still send? ❌ (Bug found!)</li>
+                </ul>
+            </div>
+
+            <h3>💨 Smoke Testing</h3>
+            <p><em>"Basic sanity check - does the app even work?"</em></p>
+            <div class="example">
+                <strong>Example: New Spotify Release</strong>
+                <ul>
+                    <li>App opens without crashing ✅</li>
+                    <li>Can log in ✅</li>
+                    <li>Music plays ✅</li>
+                    <li>Search works ✅</li>
+                </ul>
+                <p><em>If any of these fail, don't bother testing other features - fix these first!</em></p>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>📝 4. Test Case Design Techniques</h2>
+
+            <h3>🎯 Equivalence Partitioning</h3>
+            <p><em>"Group similar inputs together"</em></p>
+            <div class="gui-example">
+                <h3>Example: Testing Age Input on Netflix</h3>
+                <p><strong>Age groups:</strong></p>
+                <ul>
+                    <li><strong>Invalid (below 0):</strong> -5, -1</li>
+                    <li><strong>Child (0-12):</strong> 5, 10 → Shows kids content</li>
+                    <li><strong>Teen (13-17):</strong> 15, 16 → Shows teen content</li>
+                    <li><strong>Adult (18+):</strong> 25, 50 → Shows all content</li>
+                    <li><strong>Invalid (too high):</strong> 200, 999</li>
+                </ul>
+                <p><em>Instead of testing every age, test one from each group!</em></p>
+            </div>
+
+            <h3>🔍 Boundary Value Analysis</h3>
+            <p><em>"Test the edges - that's where bugs hide!"</em></p>
+            <div class="example">
+                <strong>Example: Instagram Password Requirements (8-20 characters)</strong>
+                <div class="test-case">
+                    Test Values:
+                    • 7 characters: "pass123" (Invalid - too short)
+                    • 8 characters: "pass1234" (Valid - minimum)
+                    • 9 characters: "pass12345" (Valid)
+                    • 19 characters: "password123456789ab" (Valid)
+                    • 20 characters: "password123456789abc" (Valid - maximum)
+                    • 21 characters: "password123456789abcd" (Invalid - too long)
+                </div>
+            </div>
+
+            <h3>📊 Decision Table Testing</h3>
+            <div class="gui-example">
+                <h3>Example: ATM Cash Withdrawal</h3>
+                <table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
+                    <tr style="background: #667eea; color: white;">
+                        <th style="border: 1px solid #ddd; padding: 8px;">Valid Card?</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Correct PIN?</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Sufficient Balance?</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Result</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Yes</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Yes</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Yes</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; background: #c8e6c9;">💰 Give Cash</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Yes</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Yes</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">No</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; background: #ffcdd2;">❌ Insufficient Funds</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Yes</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">No</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; background: #ffcdd2;">❌ Incorrect PIN</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">No</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; background: #ffcdd2;">❌ Invalid Card</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🐛 5. Bug Life Cycle & Reporting</h2>
+
+            <h3>🔄 Bug Life Cycle</h3>
+            <div class="example">
+                <strong>The Journey of a Bug (Like a patient in a hospital):</strong>
+                <ol>
+                    <li><strong>🆕 New:</strong> "Doctor, I found a problem!" (Tester finds bug)</li>
+                    <li><strong>📋 Assigned:</strong> "Dr. Smith will handle this" (Given to developer)</li>
+                    <li><strong>🔧 In Progress:</strong> "Doctor is treating the patient" (Developer fixing)</li>
+                    <li><strong>✅ Fixed:</strong> "Treatment complete" (Developer claims it's fixed)</li>
+                    <li><strong>🧪 Retest:</strong> "Let's check if patient is really healthy" (Tester verifies)</li>
+                    <li><strong>🎯 Closed:</strong> "Patient is cured!" (Bug confirmed fixed)</li>
+                    <li><strong>🔄 Reopened:</strong> "Patient got sick again!" (Bug still exists)</li>
+                </ol>
+            </div>
+
+            <h3>📝 How to Write a Good Bug Report</h3>
+            <div class="gui-example">
+                <h3>Example: Bug in Uber App</h3>
+                <div class="test-case">
+                    <strong>Bug Title:</strong> "Ride booking fails when destination is airport"
+                    
+                    <strong>Steps to Reproduce:</strong>
+                    1. Open Uber app
+                    2. Enter pickup location: "Times Square, NYC"
+                    3. Enter destination: "JFK Airport"
+                    4. Select "UberX"
+                    5. Tap "Request Ride"
+                    
+                    <strong>Expected Result:</strong> Ride should be booked successfully
+                    
+                    <strong>Actual Result:</strong> App shows "Something went wrong" error
+                    
+                    <strong>Environment:</strong> iPhone 12, iOS 15.2, Uber app v4.5.1
+                    
+                    <strong>Priority:</strong> High (affects airport travelers)
+                    
+                    <strong>Severity:</strong> High (core functionality broken)
+                </div>
+            </div>
+
+            <div class="tip">
+                💡 <strong>Pro Tip:</strong> Always include screenshots or screen recordings! A picture is worth a thousand words.
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>📋 6. Test Plan & Strategy</h2>
+
+            <h3>🎯 What is a Test Plan?</h3>
+            <p>A test plan is like a recipe for cooking 👨‍🍳 - it tells you what to test, how to test it, who will test it, and when.</p>
+
+            <div class="gui-example">
+                <h3>Example: Test Plan for TikTok's New Filter Feature</h3>
+                <div class="test-case">
+                    <strong>📅 Timeline:</strong> 2 weeks
+                    
+                    <strong>👥 Team:</strong> 3 testers, 1 lead
+                    
+                    <strong>🎯 Scope:</strong>
+                    • Filter selection works
+                    • Filters apply correctly to videos
+                    • Performance doesn't slow down
+                    • Works on different phones
+                    
+                    <strong>❌ Out of Scope:</strong>
+                    • Existing filters (already tested)
+                    • Video uploading (separate feature)
+                    
+                    <strong>🔧 Test Environment:</strong>
+                    • iPhone 12, 13, Samsung Galaxy S21
+                    • iOS 15+, Android 11+
+                    
+                    <strong>⚠️ Risks:</strong>
+                    • New feature might crash on older phones
+                    • Filters might not work in poor lighting
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🔍 7. Exploratory Testing</h2>
+            <p><em>"Be like a curious child - poke around and see what breaks!"</em></p>
+
+            <div class="gui-example">
+                <h3>Example: Exploring Spotify Like a Detective 🕵️‍♀️</h3>
+                <p><strong>Scenario:</strong> You're testing Spotify's playlist feature, but instead of following scripts, you explore freely:</p>
+                <ul>
+                    <li><strong>Curiosity 1:</strong> "What happens if I create a playlist with 10,000 songs?"</li>
+                    <li><strong>Discovery:</strong> App becomes very slow! 🐌</li>
+                    <li><strong>Curiosity 2:</strong> "Can I add the same song 100 times to one playlist?"</li>
+                    <li><strong>Discovery:</strong> Yes, but it's confusing for users! 😵</li>
+                    <li><strong>Curiosity 3:</strong> "What if I name my playlist with only emojis?"</li>
+                    <li><strong>Discovery:</strong> Works fine! 😎</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                💡 <strong>Exploratory Testing Mindset:</strong> Ask "What if...?" constantly. Think like a user who doesn't read manuals!
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>👥 8. Usability Testing</h2>
+            <p><em>"Can real people actually use this without getting frustrated?"</em></p>
+
+            <div class="gui-example">
+                <h3>Example: Testing Banking App Usability</h3>
+                <p><strong>Task:</strong> "Transfer $50 to your friend John"</p>
+                
+                <p><strong>What to observe:</strong></p>
+                <ul>
+                    <li><strong>Time:</strong> How long does it take? (Should be under 2 minutes)</li>
+                    <li><strong>Clicks:</strong> How many taps needed? (Fewer is better)</li>
+                    <li><strong>Confusion:</strong> Do users get lost or frustrated?</li>
+                    <li><strong>Errors:</strong> Do they accidentally send money to wrong person?</li>
+                </ul>
+
+                <p><strong>Real User Feedback:</strong></p>
+                <ul>
+                    <li>"I couldn't find the transfer button!" 😤</li>
+                    <li>"The font is too small, I can't read it" 👀</li>
+                    <li>"Too many steps, my bank's app is simpler" 📱</li>
+                </ul>
+            </div>
+
+            <h3>🎯 Key Usability Principles</h3>
+            <ul>
+                <li><strong>Simple:</strong> Don't make users think too hard</li>
+                <li><strong>Fast:</strong> Each action should be quick</li>
+                <li><strong>Forgiving:</strong> Easy to undo mistakes</li>
+                <li><strong>Accessible:</strong> Works for people with disabilities</li>
+            </ul>
+        </div>
+
+        <div class="topic-section">
+            <h2>📱 9. Mobile & Web Testing</h2>
+
+            <h3>📱 Mobile Testing Challenges</h3>
+            <div class="gui-example">
+                <h3>Example: Testing Food Delivery App</h3>
+                <p><strong>Device Variations:</strong></p>
+                <ul>
+                    <li><strong>Screen sizes:</strong> iPhone SE (small) vs iPad (large)</li>
+                    <li><strong>Operating systems:</strong> iOS vs Android</li>
+                    <li><strong>Performance:</strong> New iPhone vs 5-year-old Android</li>
+                </ul>
+
+                <p><strong>Unique Mobile Scenarios:</strong></p>
+                <ul>
+                    <li><strong>Battery dies</strong> during food ordering - does order save? 🔋</li>
+                    <li><strong>Phone call interrupts</strong> app - can you resume ordering? 📞</li>
+                    <li><strong>Network switches</strong> from WiFi to 4G - does app handle it? 📶</li>
+                    <li><strong>GPS location</strong> is wrong - can you manually set address? 📍</li>
+                </ul>
+            </div>
+
+            <h3>🌐 Web Testing Essentials</h3>
+            <div class="example">
+                <strong>Browser Compatibility Testing - Amazon.com:</strong>
+                <ul>
+                    <li><strong>Chrome:</strong> Shopping cart works perfectly ✅</li>
+                    <li><strong>Safari:</strong> Payment button is misaligned ❌</li>
+                    <li><strong>Firefox:</strong> Product images load slowly ⚠️</li>
+                    <li><strong>Edge:</strong> Search function doesn't work ❌</li>
+                </ul>
+                <p><em>Each browser interprets code differently - test them all!</em></p>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🛠️ 10. Tools for Manual Testing</h2>
+
+            <h3>📋 JIRA - Bug Tracking</h3>
+            <div class="gui-example">
+                <h3>Example: Tracking Instagram Bug in JIRA</h3>
+                <p><strong>Bug ID:</strong> INST-1234</p>
+                <p><strong>Summary:</strong> Stories not loading on Android</p>
+                <p><strong>Assignee:</strong> John Developer</p>
+                <p><strong>Status:</strong> In Progress → Fixed → Retest → Closed</p>
+                <p><strong>Comments:</strong> Back-and-forth discussion between tester and developer</p>
+            </div>
+
+            <h3>📝 TestRail - Test Case Management</h3>
+            <div class="example">
+                <strong>Organizing Test Cases for Netflix:</strong>
+                <ul>
+                    <li><strong>Test Suite:</strong> "Video Playback"</li>
+                    <li><strong>Test Cases:</strong> 
+                        <ul>
+                            <li>TC001: Play HD video</li>
+                            <li>TC002: Pause/Resume video</li>
+                            <li>TC003: Fast forward/Rewind</li>
+                        </ul>
+                    </li>
+                    <li><strong>Test Run:</strong> Execute all cases for new release</li>
+                    <li><strong>Results:</strong> Track pass/fail for each test</li>
+                </ul>
+            </div>
+
+            <h3>📸 Additional Tools</h3>
+            <ul>
+                <li><strong>Screenshot tools:</strong> Snagit, Lightshot (capture bugs visually)</li>
+                <li><strong>Screen recording:</strong> Loom, OBS (show bug reproduction)</li>
+                <li><strong>Browser dev tools:</strong> F12 in Chrome (check console errors)</li>
+                <li><strong>Postman:</strong> Test APIs (behind-the-scenes communication)</li>
+            </ul>
+        </div>
+
+        <div class="interview-section">
+            <h2>🎤 Interview Questions for Manual QA</h2>
+            
+            <h3>🎯 Basic Questions</h3>
+            <ol>
+                <li><strong>What is the difference between SDLC and STLC?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong> SDLC is the entire software development process (planning to maintenance), while STLC is specifically the testing process within SDLC.
+                    </div>
+                </li>
+                
+                <li><strong>How do you prioritize test cases?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong> Based on business impact, user frequency, and risk. Critical features like login/payment get highest priority.
+                    </div>
+                </li>
+                
+                <li><strong>Explain the bug life cycle with an example.</strong></li>
+                <li><strong>What is exploratory testing? Give a real scenario.</strong></li>
+                <li><strong>How do you report a critical bug? Show me the format.</strong></li>
+            </ol>
+
+            <h3>🔧 Intermediate Questions</h3>
+            <ol>
+                <li><strong>What is regression testing? When do you perform it?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong> Regression testing ensures that existing functionality still works after new changes. Perform it after:
+                        <ul>
+                            <li>New feature additions</li>
+                            <li>Bug fixes</li>
+                            <li>Code refactoring</li>
+                            <li>Environment changes</li>
+                        </ul>
+                        <strong>Example:</strong> After WhatsApp adds video calling, test that regular messaging, photo sharing, and voice calls still work properly.
+                    </div>
+                </li>
+                
+                <li><strong>Difference between smoke testing and sanity testing?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                            <tr style="background: #667eea; color: white;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">Aspect</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Smoke Testing</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Sanity Testing</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>Purpose</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Check if build is stable enough for testing</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Verify specific functionality after minor changes</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>Scope</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Broad - covers major functions</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Narrow - specific area/feature</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>When</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">After new build deployment</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">After minor bug fixes</td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+                
+                <li><strong>How do you ensure maximum test coverage?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>Requirements traceability:</strong> Map each requirement to test cases</li>
+                            <li><strong>Test case review:</strong> Peer review of test cases</li>
+                            <li><strong>Boundary value testing:</strong> Test edge cases and limits</li>
+                            <li><strong>Positive & negative scenarios:</strong> Test valid and invalid inputs</li>
+                            <li><strong>User journey mapping:</strong> Cover end-to-end workflows</li>
+                            <li><strong>Risk-based testing:</strong> Focus on high-risk areas</li>
+                        </ul>
+                        <strong>Coverage Formula:</strong> (Requirements covered by tests / Total requirements) × 100
+                    </div>
+                </li>
+                
+                <li><strong>What tools have you used for manual testing and why?</strong>
+                    <div class="tip">
+                        <strong>Sample Answer:</strong>
+                        <ul>
+                            <li><strong>JIRA:</strong> Bug tracking and project management - easy integration with development team</li>
+                            <li><strong>TestRail:</strong> Test case management - organized test execution and reporting</li>
+                            <li><strong>Postman:</strong> API testing - verify backend services work correctly</li>
+                            <li><strong>Browser Dev Tools:</strong> Debug frontend issues and check console errors</li>
+                            <li><strong>Charles Proxy:</strong> Monitor network traffic and API calls</li>
+                            <li><strong>Snagit:</strong> Screenshot and screen recording for bug reports</li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li><strong>How do you handle testing when requirements are unclear?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>Ask questions:</strong> Clarify ambiguous requirements with stakeholders</li>
+                            <li><strong>Document assumptions:</strong> Write down what you understand and get approval</li>
+                            <li><strong>Exploratory testing:</strong> Test different scenarios to understand expected behavior</li>
+                            <li><strong>User story analysis:</strong> Break down requirements into smaller, testable pieces</li>
+                            <li><strong>Prototype testing:</strong> Test early versions to understand intended functionality</li>
+                            <li><strong>Create test scenarios:</strong> Write possible test cases and validate with team</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+
+            <h3>🎯 Scenario-Based Questions</h3>
+            <ol>
+                <li><strong>"You found a critical bug 1 day before release. What do you do?"</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ol>
+                            <li><strong>Document thoroughly:</strong> Clear steps to reproduce, impact analysis</li>
+                            <li><strong>Assess severity:</strong> Does it block core functionality? Affect user data?</li>
+                            <li><strong>Communicate immediately:</strong> Inform development lead, project manager, and stakeholders</li>
+                            <li><strong>Provide recommendations:</strong> Fix now vs. hotfix after release vs. workaround</li>
+                            <li><strong>Risk assessment:</strong> What's the impact if we release with this bug?</li>
+                            <li><strong>Follow up:</strong> Track fix, retest thoroughly, regression testing</li>
+                        </ol>
+                        <strong>Key Point:</strong> Present facts objectively, let stakeholders make the release decision.
+                    </div>
+                </li>
+                
+                <li><strong>"Developer says 'It works on my machine.' How do you respond?"</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>Stay professional:</strong> "Let's work together to understand the difference"</li>
+                            <li><strong>Environment comparison:</strong> Compare OS, browser versions, configurations</li>
+                            <li><strong>Detailed reproduction:</strong> Share exact steps, test data, screenshots/videos</li>
+                            <li><strong>Pair testing:</strong> Reproduce the issue together on developer's machine</li>
+                            <li><strong>Log analysis:</strong> Check application logs, network calls, console errors</li>
+                            <li><strong>Environment sync:</strong> Ensure test environment matches development environment</li>
+                        </ul>
+                        <strong>Remember:</strong> It's not "us vs them" - we're both trying to deliver quality software.
+                    </div>
+                </li>
+                
+                <li><strong>"You have 100 test cases but only 2 hours. How do you prioritize?"</strong>
+                    <div class="tip">
+                        <strong>Answer - Priority Framework:</strong>
+                        <ol>
+                            <li><strong>Critical Path (30 mins):</strong> Core user journeys (login, purchase, payment)</li>
+                            <li><strong>High Impact (45 mins):</strong> Features most users interact with</li>
+                            <li><strong>Risk Areas (30 mins):</strong> Recently changed code, complex integrations</li>
+                            <li><strong>Smoke Tests (15 mins):</strong> Basic functionality validation</li>
+                        </ol>
+                        <strong>Decision Matrix:</strong>
+                        <ul>
+                            <li><strong>P1:</strong> High business impact + High usage = Must test</li>
+                            <li><strong>P2:</strong> Medium impact + High usage = Should test</li>
+                            <li><strong>P3:</strong> Low impact + Low usage = Skip for now</li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li><strong>"Describe the most challenging bug you found and how you reported it."</strong>
+                    <div class="tip">
+                        <strong>Sample Answer Structure:</strong>
+                        <ul>
+                            <li><strong>Context:</strong> "I was testing a financial app's money transfer feature"</li>
+                            <li><strong>Challenge:</strong> "Bug occurred only with specific amount ranges during peak hours"</li>
+                            <li><strong>Investigation:</strong> "I analyzed patterns, tested different scenarios, collected logs"</li>
+                            <li><strong>Documentation:</strong> "Created detailed reproduction steps with screenshots and network logs"</li>
+                            <li><strong>Impact:</strong> "Bug could have caused incorrect money transfers - high severity"</li>
+                            <li><strong>Resolution:</strong> "Worked with dev team to identify root cause in currency conversion logic"</li>
+                        </ul>
+                        <strong>Key Elements:</strong> Show analytical thinking, communication skills, and impact understanding.
+                    </div>
+                </li>
+                
+                <li><strong>"How would you test an e-commerce checkout process?"</strong>
+                    <div class="tip">
+                        <strong>Comprehensive Test Approach:</strong>
+                        
+                        <strong>🛒 Shopping Cart Testing:</strong>
+                        <ul>
+                            <li>Add/remove items, quantity changes, price calculations</li>
+                            <li>Save cart between sessions, guest vs. registered user</li>
+                        </ul>
+                        
+                        <strong>💳 Payment Testing:</strong>
+                        <ul>
+                            <li>Valid/invalid credit cards, different payment methods</li>
+                            <li>Security validation, PCI compliance</li>
+                            <li>Payment failures, timeouts, network issues</li>
+                        </ul>
+                        
+                        <strong>📦 Order Processing:</strong>
+                        <ul>
+                            <li>Order confirmation emails, inventory updates</li>
+                            <li>Shipping calculations, tax calculations</li>
+                            <li>Order tracking, order history</li>
+                        </ul>
+                        
+                        <strong>🔒 Security & Performance:</strong>
+                        <ul>
+                            <li>SSL certificates, data encryption</li>
+                            <li>Load testing during sales events</li>
+                            <li>Cross-browser compatibility</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="tip">
+                💡 <strong>Interview Tip:</strong> Always give real examples! Instead of saying "I test login functionality," say "I tested Facebook's login and found that special characters in passwords caused crashes."
+            </div>
+        </div>
+    </div>
+
+    <!-- Visitor Counter Script -->
+    <script>
+        // Improved visitor counter - counts unique sessions only
+        function updateVisitorCount() {
+            const page = 'manual-qa-course';
+            const sessionKey = page + '-session';
+            const visitorsKey = page + '-visitors';
+            const lastVisitKey = page + '-lastVisit';
+            
+            // Get current session and visitor count
+            const currentSession = sessionStorage.getItem(sessionKey);
+            let visitors = parseInt(localStorage.getItem(visitorsKey)) || 0;
+            const lastVisit = localStorage.getItem(lastVisitKey);
+            const now = Date.now();
+            const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+            
+            // Check if this is a new session (not visited in this browser session)
+            // OR if last visit was more than 1 hour ago (new session)
+            const isNewSession = !currentSession || 
+                                 !lastVisit || 
+                                 (now - parseInt(lastVisit)) > oneHour;
+            
+            if (isNewSession) {
+                // Increment visitor count for new session
+                visitors += 1;
+                localStorage.setItem(visitorsKey, visitors);
+                localStorage.setItem(lastVisitKey, now.toString());
+                sessionStorage.setItem(sessionKey, 'visited');
+                
+                // Show "New visitor!" message briefly
+                showNewVisitorMessage();
+            }
+            
+            // Update display
+            document.getElementById('visitorCount').textContent = visitors;
+            
+            // Add animation
+            animateCounter();
+        }
+        
+        function showNewVisitorMessage() {
+            const counter = document.querySelector('.visitor-counter');
+            const originalText = counter.innerHTML;
+            
+            // Briefly show "New visitor!" message
+            counter.innerHTML = '🎉 Welcome new visitor!';
+            counter.style.background = '#d4edda';
+            counter.style.borderColor = '#28a745';
+            counter.style.color = '#155724';
+            
+            setTimeout(() => {
+                counter.innerHTML = originalText;
+                counter.style.background = '#f8f9fa';
+                counter.style.borderColor = '#667eea';
+                counter.style.color = '#667eea';
+            }, 2000);
+        }
+        
+        // Add animation to the counter
+        function animateCounter() {
+            const counter = document.getElementById('visitorCount');
+            counter.style.transform = 'scale(1.2)';
+            counter.style.color = '#e74c3c';
+            
+            setTimeout(() => {
+                counter.style.transform = 'scale(1)';
+                counter.style.color = '#667eea';
+            }, 300);
+        }
+        
+        // Update count when page loads
+        window.addEventListener('load', updateVisitorCount);
+        
+        // Add page visibility change detection
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                // Page became visible - check if we need to update count
+                // (useful when user returns to tab after a long time)
+                const now = Date.now();
+                const lastVisit = localStorage.getItem('manual-qa-course-lastVisit');
+                const oneHour = 60 * 60 * 1000;
+                
+                if (lastVisit && (now - parseInt(lastVisit)) > oneHour) {
+                    // More than 1 hour passed, treat as new session
+                    sessionStorage.removeItem('manual-qa-course-session');
+                    updateVisitorCount();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

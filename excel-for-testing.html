@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel for Testing - Complete Guide with Formulas</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            margin: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Navigation Bar */
+        .nav-bar {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+        }
+        .visitor-counter {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 2px solid #1e3c72;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .topic-section {
+            background: rgba(255,255,255,0.95);
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            padding: 2.5rem;
+            border-left: 6px solid #1e3c72;
+        }
+        
+        h2 {
+            color: #2a5298;
+            font-size: 1.8em;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #1e3c72;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: #1e3c72;
+            font-size: 1.3em;
+            margin-top: 1.5rem;
+        }
+        
+        .excel-example {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+        }
+        
+        .formula-box {
+            background: #1e1e1e;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .excel-table {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .excel-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .excel-table th {
+            background: #217346;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #166534;
+        }
+        
+        .excel-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            background: #fafafa;
+        }
+        
+        .excel-table .formula-cell {
+            background: #e3f2fd;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #1565c0;
+        }
+        
+        .excel-table .result-cell {
+            background: #e8f5e8;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        .tip {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 6px;
+            color: #856404;
+        }
+        
+        .use-case {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 5px solid #9c27b0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.2);
+        }
+        
+        .screenshot-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #6c757d;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            .nav-bar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .topic-section { padding: 1.5rem; }
+            .excel-table { font-size: 0.9rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .container { padding: 5px; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.3rem; }
+            .topic-section { padding: 1rem; margin: 1rem 0; }
+            .excel-table { font-size: 0.8rem; overflow-x: auto; }
+            .excel-table th, .excel-table td { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">🏠 Home</a>
+                <a href="comprehensive-manual-qa-course.html" class="nav-btn">📚 Manual QA</a>
+                <a href="comprehensive-automation-qa-course.html" class="nav-btn">🤖 Automation QA</a>
+                <a href="excel-for-testing.html" class="nav-btn">📊 Excel for Testing</a>
+            </div>
+            <div class="visitor-counter">
+                👥 Visitors: <span id="visitorCount">Loading...</span>
+            </div>
+        </nav>
+
+        <header>
+            <h1>📊 Excel for Software Testing</h1>
+            <p style="font-size: 1.2em; margin-top: 1rem;">Master Excel Formulas and Functions for Effective Test Management</p>
+            <p>Complete guide with real testing scenarios, GUI examples, and practical applications</p>
+        </header>
+
+        <div class="topic-section">
+            <h2>🎯 Why Excel is Essential for Testers</h2>
+            <p>Excel is one of the most powerful tools for QA professionals. It helps with test data management, test case organization, bug tracking, reporting, and analysis.</p>
+            
+            <div class="use-case">
+                <h3>📋 Common Testing Use Cases for Excel:</h3>
+                <ul>
+                    <li><strong>Test Case Management:</strong> Organize and track test cases</li>
+                    <li><strong>Test Data Generation:</strong> Create large datasets for testing</li>
+                    <li><strong>Bug Tracking:</strong> Track and analyze defects</li>
+                    <li><strong>Test Execution Reports:</strong> Generate comprehensive reports</li>
+                    <li><strong>Data Validation:</strong> Compare expected vs actual results</li>
+                    <li><strong>Performance Analysis:</strong> Analyze test execution metrics</li>
+                    <li><strong>Requirements Traceability:</strong> Map requirements to test cases</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🔍 VLOOKUP - Finding Test Data</h2>
+            <p>VLOOKUP is crucial for finding specific test data, matching user IDs with expected results, or validating data integrity.</p>
+            
+            <div class="excel-example">
+                <h3>🎯 Testing Scenario: User Login Validation</h3>
+                <p><strong>Problem:</strong> You have a list of 1000 users and need to find specific user details for testing login functionality.</p>
+                
+                <div class="excel-table">
+                    <table>
+                        <tr>
+                            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th>
+                        </tr>
+                        <tr>
+                            <td><strong>User_ID</strong></td>
+                            <td><strong>Username</strong></td>
+                            <td><strong>Email</strong></td>
+                            <td><strong>Role</strong></td>
+                            <td><strong>Search ID</strong></td>
+                            <td><strong>Found Username</strong></td>
+                        </tr>
+                        <tr>
+                            <td>101</td>
+                            <td>john_doe</td>
+                            <td>john@test.com</td>
+                            <td>Admin</td>
+                            <td>103</td>
+                            <td class="formula-cell">=VLOOKUP(E2,A:D,2,FALSE)</td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>jane_smith</td>
+                            <td>jane@test.com</td>
+                            <td>User</td>
+                            <td>101</td>
+                            <td class="result-cell">alice_brown</td>
+                        </tr>
+                        <tr>
+                            <td>103</td>
+                            <td>alice_brown</td>
+                            <td>alice@test.com</td>
+                            <td>Manager</td>
+                            <td>102</td>
+                            <td class="result-cell">john_doe</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formula-box">
+<strong>Formula Explanation:</strong>
+=VLOOKUP(E2, A:D, 2, FALSE)
+
+• E2: Search value (User ID to find)
+• A:D: Table range (User data)  
+• 2: Column index (Username is in 2nd column)
+• FALSE: Exact match required
+                </div>
+            </div>
+
+            <div class="tip">
+                💡 <strong>Testing Tip:</strong> Use VLOOKUP to quickly find test data for specific user roles, validate expected outputs, or match test cases with requirements.
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🔢 HLOOKUP - Horizontal Data Lookup</h2>
+            <p>HLOOKUP is perfect for test matrices where data is organized horizontally, like browser compatibility testing.</p>
+            
+            <div class="excel-example">
+                <h3>🌐 Testing Scenario: Cross-Browser Compatibility Results</h3>
+                
+                <div class="excel-table">
+                    <table>
+                        <tr>
+                            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Feature</strong></td>
+                            <td><strong>Chrome</strong></td>
+                            <td><strong>Firefox</strong></td>
+                            <td><strong>Safari</strong></td>
+                            <td><strong>Edge</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Login</td>
+                            <td>Pass</td>
+                            <td>Pass</td>
+                            <td>Fail</td>
+                            <td>Pass</td>
+                        </tr>
+                        <tr>
+                            <td>Payment</td>
+                            <td>Pass</td>
+                            <td>Fail</td>
+                            <td>Pass</td>
+                            <td>Pass</td>
+                        </tr>
+                        <tr>
+                            <td>Search</td>
+                            <td>Pass</td>
+                            <td>Pass</td>
+                            <td>Pass</td>
+                            <td>Pass</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Browser to Check:</strong></td>
+                            <td>Firefox</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Payment Result:</strong></td>
+                            <td class="formula-cell">=HLOOKUP(B7,B1:E4,3,FALSE)</td>
+                            <td class="result-cell">Fail</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formula-box">
+<strong>HLOOKUP Formula:</strong>
+=HLOOKUP(B7, B1:E4, 3, FALSE)
+
+• B7: Browser name to search (Firefox)
+• B1:E4: Horizontal data range
+• 3: Row index (Payment is in 3rd row)
+• FALSE: Exact match
+Result: "Fail" - Firefox failed payment testing
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🔗 INDEX & MATCH - Advanced Lookups</h2>
+            <p>INDEX and MATCH combination is more flexible than VLOOKUP and can search in any direction.</p>
+            
+            <div class="excel-example">
+                <h3>🐛 Testing Scenario: Bug Severity Analysis</h3>
+                
+                <div class="excel-table">
+                    <table>
+                        <tr>
+                            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Bug_ID</strong></td>
+                            <td><strong>Module</strong></td>
+                            <td><strong>Severity</strong></td>
+                            <td><strong>Status</strong></td>
+                            <td><strong>Days_Open</strong></td>
+                        </tr>
+                        <tr>
+                            <td>BUG001</td>
+                            <td>Login</td>
+                            <td>Critical</td>
+                            <td>Open</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>BUG002</td>
+                            <td>Payment</td>
+                            <td>High</td>
+                            <td>Fixed</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>BUG003</td>
+                            <td>Search</td>
+                            <td>Medium</td>
+                            <td>Open</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Find Bug:</strong></td>
+                            <td>BUG002</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Days Open:</strong></td>
+                            <td class="formula-cell">=INDEX(E2:E4,MATCH(B6,A2:A4,0))</td>
+                            <td class="result-cell">2</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formula-box">
+<strong>INDEX & MATCH Formula:</strong>
+=INDEX(E2:E4, MATCH(B6, A2:A4, 0))
+
+• INDEX(E2:E4, ...): Return value from Days_Open column
+• MATCH(B6, A2:A4, 0): Find position of BUG002 in Bug_ID column
+• 0: Exact match required
+
+Advantage: Can search left-to-right or right-to-left, unlike VLOOKUP
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>📊 COUNTIF & COUNTIFS - Test Result Analysis</h2>
+            <p>Count functions are essential for analyzing test results, bug statistics, and generating test reports.</p>
+            
+            <div class="excel-example">
+                <h3>📈 Testing Scenario: Test Execution Dashboard</h3>
+                
+                <div class="excel-table">
+                    <table>
+                        <tr>
+                            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Test_Case</strong></td>
+                            <td><strong>Result</strong></td>
+                            <td><strong>Priority</strong></td>
+                            <td><strong>Module</strong></td>
+                            <td><strong>Execution_Time</strong></td>
+                        </tr>
+                        <tr>
+                            <td>TC001</td>
+                            <td>Pass</td>
+                            <td>High</td>
+                            <td>Login</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>TC002</td>
+                            <td>Fail</td>
+                            <td>Critical</td>
+                            <td>Payment</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>TC003</td>
+                            <td>Pass</td>
+                            <td>Medium</td>
+                            <td>Search</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>TC004</td>
+                            <td>Fail</td>
+                            <td>High</td>
+                            <td>Login</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>TC005</td>
+                            <td>Pass</td>
+                            <td>Critical</td>
+                            <td>Payment</td>
+                            <td>6</td>
+                        </tr>
+                        <tr style="background: #e3f2fd;">
+                            <td><strong>Total Pass:</strong></td>
+                            <td class="formula-cell">=COUNTIF(B2:B6,"Pass")</td>
+                            <td class="result-cell">3</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr style="background: #ffebee;">
+                            <td><strong>Total Fail:</strong></td>
+                            <td class="formula-cell">=COUNTIF(B2:B6,"Fail")</td>
+                            <td class="result-cell">2</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td><strong>Critical Fails:</strong></td>
+                            <td class="formula-cell">=COUNTIFS(B2:B6,"Fail",C2:C6,"Critical")</td>
+                            <td class="result-cell">1</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formula-box">
+<strong>COUNTIF Examples:</strong>
+=COUNTIF(B2:B6,"Pass")          → Counts all "Pass" results
+=COUNTIF(B2:B6,"Fail")          → Counts all "Fail" results
+
+<strong>COUNTIFS (Multiple Criteria):</strong>
+=COUNTIFS(B2:B6,"Fail",C2:C6,"Critical")
+→ Counts tests that are both "Fail" AND "Critical"
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>➕ SUMIF & SUMIFS - Performance Metrics</h2>
+            <p>Sum functions help calculate total execution times, effort estimation, and performance analysis.</p>
+            
+            <div class="excel-example">
+                <h3>⏱️ Testing Scenario: Test Execution Time Analysis</h3>
+                
+                <div class="excel-table">
+                    <table>
+                        <tr>
+                            <th>A</th><th>B</th><th>C</th><th>D</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Test_Case</strong></td>
+                            <td><strong>Module</strong></td>
+                            <td><strong>Status</strong></td>
+                            <td><strong>Time_Minutes</strong></td>
+                        </tr>
+                        <tr>
+                            <td>TC001</td>
+                            <td>Login</td>
+                            <td>Complete</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>TC002</td>
+                            <td>Payment</td>
+                            <td>Complete</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>TC003</td>
+                            <td>Login</td>
+                            <td>Pending</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>TC004</td>
+                            <td>Search</td>
+                            <td>Complete</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>TC005</td>
+                            <td>Payment</td>
+                            <td>Complete</td>
+                            <td>30</td>
+                        </tr>
+                        <tr style="background: #e8f5e8;">
+                            <td><strong>Login Total Time:</strong></td>
+                            <td class="formula-cell">=SUMIF(B2:B6,"Login",D2:D6)</td>
+                            <td class="result-cell">35 min</td>
+                            <td></td>
+                        </tr>
+                        <tr style="background: #e3f2fd;">
+                            <td><strong>Completed Tests Time:</strong></td>
+                            <td class="formula-cell">=SUMIF(C2:C6,"Complete",D2:D6)</td>
+                            <td class="result-cell">80 min</td>
+                            <td></td>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td><strong>Payment Completed:</strong></td>
+                            <td class="formula-cell">=SUMIFS(D2:D6,B2:B6,"Payment",C2:C6,"Complete")</td>
+                            <td class="result-cell">55 min</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formula-box">
+<strong>SUMIF Examples:</strong>
+=SUMIF(B2:B6,"Login",D2:D6)
+→ Sum time for all "Login" module tests
+
+=SUMIF(C2:C6,"Complete",D2:D6)  
+→ Sum time for all "Complete" tests
+
+<strong>SUMIFS (Multiple Criteria):</strong>
+=SUMIFS(D2:D6,B2:B6,"Payment",C2:C6,"Complete")
+→ Sum time for tests that are "Payment" AND "Complete"
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🔀 IF & Nested IF - Conditional Logic</h2>
+            <p>IF functions help create dynamic test reports and automate pass/fail criteria based on conditions.</p>
+            
+            <div class="excel-example">
+                <h3>✅ Testing Scenario: Automated Pass/Fail Determination</h3>
+                
+                <div class="excel-table">
+                    <table>
+                        <tr>
+                            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Test_Case</strong></td>
+                            <td><strong>Expected</strong></td>
+                            <td><strong>Actual</strong></td>
+                            <td><strong>Response_Time</strong></td>
+                            <td><strong>Result</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Login_Test</td>
+                            <td>Success</td>
+                            <td>Success</td>
+                            <td>1.2</td>
+                            <td class="formula-cell">=IF(AND(B2=C2,D2&lt;=2),"PASS","FAIL")</td>
+                        </tr>
+                        <tr>
+                            <td>Payment_Test</td>
+                            <td>Success</td>
+                            <td>Error</td>
+                            <td>0.8</td>
+                            <td class="result-cell">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td>Search_Test</td>
+                            <td>10 Results</td>
+                            <td>10 Results</td>
+                            <td>3.5</td>
+                            <td class="result-cell">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td>Logout_Test</td>
+                            <td>Success</td>
+                            <td>Success</td>
+                            <td>0.5</td>
+                            <td class="result-cell">PASS</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formula-box">
+<strong>Complex IF Formula:</strong>
+=IF(AND(B2=C2, D2<=2), "PASS", "FAIL")
+
+Logic:
+• IF Expected = Actual AND Response Time ≤ 2 seconds
+• THEN "PASS"  
+• ELSE "FAIL"
+
+<strong>Nested IF for Severity:</strong>
+=IF(D2>5,"Critical",IF(D2>2,"High","Normal"))
+→ Categorizes response time into severity levels
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>📅 Date Functions - Test Scheduling</h2>
+            <p>Date functions are crucial for test planning, tracking execution timelines, and calculating testing effort.</p>
+            
+            <div class="excel-example">
+                <h3>📅 Testing Scenario: Test Schedule Management</h3>
+                
+                <div class="excel-table">
+                    <table>
+                        <tr>
+                            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Test_Phase</strong></td>
+                            <td><strong>Start_Date</strong></td>
+                            <td><strong>End_Date</strong></td>
+                            <td><strong>Duration</strong></td>
+                            <td><strong>Status</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Unit Testing</td>
+                            <td>2025-08-01</td>
+                            <td>2025-08-05</td>
+                            <td class="formula-cell">=C2-B2</td>
+                            <td class="formula-cell">=IF(TODAY()>C2,"Complete","In Progress")</td>
+                        </tr>
+                        <tr>
+                            <td>Integration Testing</td>
+                            <td>2025-08-06</td>
+                            <td>2025-08-10</td>
+                            <td class="result-cell">4 days</td>
+                            <td class="result-cell">In Progress</td>
+                        </tr>
+                        <tr>
+                            <td>System Testing</td>
+                            <td>2025-08-11</td>
+                            <td>2025-08-20</td>
+                            <td class="result-cell">9 days</td>
+                            <td class="result-cell">Pending</td>
+                        </tr>
+                        <tr>
+                            <td>UAT</td>
+                            <td>2025-08-21</td>
+                            <td>2025-08-25</td>
+                            <td class="result-cell">4 days</td>
+                            <td class="result-cell">Pending</td>
+                        </tr>
+                        <tr style="background: #e3f2fd;">
+                            <td><strong>Today's Date:</strong></td>
+                            <td class="formula-cell">=TODAY()</td>
+                            <td class="result-cell">2025-08-21</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr style="background: #e8f5e8;">
+                            <td><strong>Project End:</strong></td>
+                            <td class="formula-cell">=WORKDAY(B2,21)</td>
+                            <td class="result-cell">2025-08-28</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formula-box">
+<strong>Date Function Examples:</strong>
+
+=TODAY()                    → Current date
+=C2-B2                     → Calculate duration between dates  
+=WORKDAY(B2,21)            → Add 21 working days to start date
+=IF(TODAY()>C2,"Complete","In Progress")  → Status based on current date
+
+<strong>Advanced Date Functions:</strong>
+=NETWORKDAYS(B2,C2)        → Count working days between dates
+=WEEKDAY(TODAY())          → Get day of week (1=Sunday, 7=Saturday)
+=DATEDIF(B2,C2,"D")        → Difference in days between dates
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>📝 Text Functions - Data Cleaning</h2>
+            <p>Text functions help clean and format test data, extract information, and prepare data for testing.</p>
+            
+            <div class="excel-example">
+                <h3>🧹 Testing Scenario: Test Data Preparation</h3>
+                
+                <div class="excel-table">
+                    <table>
+                        <tr>
+                            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Raw_Email</strong></td>
+                            <td><strong>Clean_Email</strong></td>
+                            <td><strong>Domain</strong></td>
+                            <td><strong>Username</strong></td>
+                            <td><strong>Validation</strong></td>
+                        </tr>
+                        <tr>
+                            <td> JOHN.DOE@GMAIL.COM </td>
+                            <td class="formula-cell">=TRIM(LOWER(A2))</td>
+                            <td class="formula-cell">=RIGHT(B2,LEN(B2)-FIND("@",B2))</td>
+                            <td class="formula-cell">=LEFT(B2,FIND("@",B2)-1)</td>
+                            <td class="formula-cell">=IF(ISERROR(FIND("@",B2)),"Invalid","Valid")</td>
+                        </tr>
+                        <tr>
+                            <td>jane.smith@yahoo.com</td>
+                            <td class="result-cell">jane.smith@yahoo.com</td>
+                            <td class="result-cell">yahoo.com</td>
+                            <td class="result-cell">jane.smith</td>
+                            <td class="result-cell">Valid</td>
+                        </tr>
+                        <tr>
+                            <td>invalid-email</td>
+                            <td class="result-cell">invalid-email</td>
+                            <td class="result-cell">#VALUE!</td>
+                            <td class="result-cell">#VALUE!</td>
+                            <td class="result-cell">Invalid</td>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td><strong>Test Case ID:</strong></td>
+                            <td class="formula-cell">=CONCATENATE("TC_",ROW()-1)</td>
+                            <td class="result-cell">TC_4</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formula-box">
+<strong>Text Function Examples:</strong>
+
+=TRIM(LOWER(A2))           → Remove spaces and convert to lowercase
+=RIGHT(B2,LEN(B2)-FIND("@",B2))  → Extract domain from email
+=LEFT(B2,FIND("@",B2)-1)   → Extract username from email
+=CONCATENATE("TC_",ROW())  → Generate test case IDs
+
+<strong>Useful Text Functions for Testing:</strong>
+=SUBSTITUTE(A2,"old","new") → Replace text in cells
+=MID(A2,3,5)               → Extract 5 characters starting from position 3
+=LEN(A2)                   → Count characters (useful for password testing)
+=UPPER(A2)                 → Convert to uppercase
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>📊 Pivot Tables - Test Result Analysis</h2>
+            <p>Pivot tables provide powerful data analysis capabilities for test reports and defect analysis.</p>
+            
+            <div class="excel-example">
+                <h3>📈 Testing Scenario: Bug Analysis Dashboard</h3>
+                <p><strong>Source Data:</strong> 500+ bug records need to be analyzed by module, severity, and status.</p>
+                
+                <div class="screenshot-placeholder">
+                    <h4>🖼️ Pivot Table Example</h4>
+                    <p><strong>Rows:</strong> Module (Login, Payment, Search)</p>
+                    <p><strong>Columns:</strong> Severity (Critical, High, Medium, Low)</p>
+                    <p><strong>Values:</strong> Count of Bugs</p>
+                    <p><strong>Filter:</strong> Status (Open, Fixed, Closed)</p>
+                </div>
+                
+                <div class="excel-table">
+                    <table>
+                        <tr>
+                            <th style="background: #1f4e79;">Module</th>
+                            <th style="background: #c5504b;">Critical</th>
+                            <th style="background: #d99694;">High</th>
+                            <th style="background: #f2cc8f;">Medium</th>
+                            <th style="background: #a8d08d;">Low</th>
+                            <th style="background: #70ad47;">Total</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Login</strong></td>
+                            <td class="result-cell">5</td>
+                            <td class="result-cell">12</td>
+                            <td class="result-cell">8</td>
+                            <td class="result-cell">3</td>
+                            <td class="result-cell">28</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Payment</strong></td>
+                            <td class="result-cell">8</td>
+                            <td class="result-cell">15</td>
+                            <td class="result-cell">10</td>
+                            <td class="result-cell">2</td>
+                            <td class="result-cell">35</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Search</strong></td>
+                            <td class="result-cell">2</td>
+                            <td class="result-cell">6</td>
+                            <td class="result-cell">15</td>
+                            <td class="result-cell">8</td>
+                            <td class="result-cell">31</td>
+                        </tr>
+                        <tr style="background: #d6d6d6;">
+                            <td><strong>Total</strong></td>
+                            <td class="result-cell">15</td>
+                            <td class="result-cell">33</td>
+                            <td class="result-cell">33</td>
+                            <td class="result-cell">13</td>
+                            <td class="result-cell">94</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="tip">
+                    💡 <strong>Pivot Table Benefits for Testing:</strong>
+                    <ul>
+                        <li><strong>Quick Analysis:</strong> Instant summary of thousands of test records</li>
+                        <li><strong>Dynamic Filtering:</strong> Filter by date range, tester, module</li>
+                        <li><strong>Drill Down:</strong> Click on numbers to see detailed records</li>
+                        <li><strong>Visual Reports:</strong> Easy to create charts from pivot data</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🎯 Practical Testing Templates</h2>
+            
+            <div class="use-case">
+                <h3>📋 Ready-to-Use Excel Templates for Testing:</h3>
+                
+                <h4>1. 📝 Test Case Template</h4>
+                <ul>
+                    <li><strong>Columns:</strong> Test_ID, Module, Description, Pre-conditions, Steps, Expected_Result, Actual_Result, Status, Priority, Assigned_To</li>
+                    <li><strong>Formulas:</strong> Auto-generate Test_IDs, calculate pass/fail percentages</li>
+                </ul>
+                
+                <h4>2. 🐛 Bug Tracking Template</h4>
+                <ul>
+                    <li><strong>Columns:</strong> Bug_ID, Title, Description, Severity, Priority, Module, Reporter, Assigned_To, Status, Found_Date, Fixed_Date</li>
+                    <li><strong>Formulas:</strong> Calculate bug aging, resolution time, status summaries</li>
+                </ul>
+                
+                <h4>3. 📊 Test Execution Dashboard</h4>
+                <ul>
+                    <li><strong>Summary:</strong> Total tests, passed, failed, pending, pass percentage</li>
+                    <li><strong>Charts:</strong> Pie chart for status distribution, bar chart for module-wise results</li>
+                    <li><strong>Formulas:</strong> COUNTIFS for status counts, conditional formatting for visual indicators</li>
+                </ul>
+                
+                <h4>4. 📈 Test Metrics Report</h4>
+                <ul>
+                    <li><strong>Metrics:</strong> Test coverage, defect density, test execution progress</li>
+                    <li><strong>Formulas:</strong> Calculate percentages, trends, and KPIs</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>💡 Pro Tips for Excel in Testing</h2>
+            
+            <div class="tip">
+                <h3>🚀 Advanced Excel Tips for Testers:</h3>
+                <ol>
+                    <li><strong>Data Validation:</strong> Create dropdown lists for test status, priority, severity</li>
+                    <li><strong>Conditional Formatting:</strong> Highlight failed tests in red, passed in green</li>
+                    <li><strong>Named Ranges:</strong> Use meaningful names instead of cell references</li>
+                    <li><strong>Table Format:</strong> Convert data to Excel tables for better filtering and sorting</li>
+                    <li><strong>Macros:</strong> Automate repetitive tasks like report generation</li>
+                    <li><strong>Power Query:</strong> Import and combine data from multiple sources</li>
+                    <li><strong>Slicers:</strong> Add interactive filters to pivot tables</li>
+                    <li><strong>Sparklines:</strong> Create mini-charts within cells for trends</li>
+                </ol>
+            </div>
+            
+            <div class="excel-example">
+                <h3>🎨 Conditional Formatting Example</h3>
+                <div class="formula-box">
+<strong>Highlight Rules for Test Results:</strong>
+
+• Green: =B2="PASS"
+• Red: =B2="FAIL"  
+• Yellow: =B2="PENDING"
+• Orange: =AND(C2="Critical", B2="FAIL")  [Critical failures]
+
+<strong>Data Bars for Progress:</strong>
+• Show completion percentage as visual bars
+• Format: Home → Conditional Formatting → Data Bars
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visitor Counter Script -->
+    <script>
+        // Visitor counter for Excel page
+        function updateVisitorCount() {
+            const page = 'excel-for-testing';
+            const sessionKey = page + '-session';
+            const visitorsKey = page + '-visitors';
+            const lastVisitKey = page + '-lastVisit';
+            
+            const currentSession = sessionStorage.getItem(sessionKey);
+            let visitors = parseInt(localStorage.getItem(visitorsKey)) || 0;
+            const lastVisit = localStorage.getItem(lastVisitKey);
+            const now = Date.now();
+            const oneHour = 60 * 60 * 1000;
+            
+            const isNewSession = !currentSession || 
+                                 !lastVisit || 
+                                 (now - parseInt(lastVisit)) > oneHour;
+            
+            if (isNewSession) {
+                visitors += 1;
+                localStorage.setItem(visitorsKey, visitors);
+                localStorage.setItem(lastVisitKey, now.toString());
+                sessionStorage.setItem(sessionKey, 'visited');
+                
+                showNewVisitorMessage();
+            }
+            
+            document.getElementById('visitorCount').textContent = visitors;
+            animateCounter();
+        }
+        
+        function showNewVisitorMessage() {
+            const counter = document.querySelector('.visitor-counter');
+            const originalText = counter.innerHTML;
+            
+            counter.innerHTML = '🎉 Welcome Excel learner!';
+            counter.style.background = '#d4edda';
+            counter.style.borderColor = '#28a745';
+            counter.style.color = '#155724';
+            
+            setTimeout(() => {
+                counter.innerHTML = originalText;
+                counter.style.background = '#f8f9fa';
+                counter.style.borderColor = '#1e3c72';
+                counter.style.color = '#1e3c72';
+            }, 2000);
+        }
+        
+        function animateCounter() {
+            const counter = document.getElementById('visitorCount');
+            counter.style.transform = 'scale(1.2)';
+            counter.style.color = '#e74c3c';
+            
+            setTimeout(() => {
+                counter.style.transform = 'scale(1)';
+                counter.style.color = '#1e3c72';
+            }, 300);
+        }
+        
+        window.addEventListener('load', updateVisitorCount);
+    </script>
+</body>
+</html>

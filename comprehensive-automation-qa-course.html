@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Automation QA Testing Course</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); 
+            color: #333; 
+            margin: 0; 
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* Navigation Bar */
+        .nav-bar {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+        }
+        .visitor-counter {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 2px solid #1e3c72;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            .nav-bar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-btn {
+                padding: 0.8rem 2rem;
+                width: 100%;
+                max-width: 250px;
+            }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .topic-section { padding: 1.5rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .container { padding: 5px; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.3rem; }
+            .topic-section { padding: 1rem; margin: 1rem 0; }
+            .code-example { font-size: 0.9rem; overflow-x: auto; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+        }
+        header { 
+            background: rgba(255,255,255,0.95); 
+            color: #333; 
+            padding: 3rem 2rem; 
+            text-align: center; 
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .topic-section { 
+            background: rgba(255,255,255,0.95); 
+            margin: 2rem 0; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
+            padding: 2.5rem; 
+            border-left: 6px solid #11998e;
+        }
+        h1 { color: #11998e; font-size: 2.5em; margin-bottom: 0.5rem; }
+        h2 { color: #0d7377; font-size: 1.8em; margin-bottom: 1rem; border-bottom: 3px solid #11998e; padding-bottom: 0.5rem; }
+        h3 { color: #11998e; font-size: 1.3em; margin-top: 1.5rem; }
+        .code-example { 
+            background: #1e1e1e; 
+            color: #f8f8f2; 
+            padding: 1.5rem; 
+            margin: 1.5rem 0; 
+            border-radius: 10px; 
+            border-left: 5px solid #38ef7d;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .gui-example { 
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); 
+            border-left: 5px solid #4caf50; 
+            padding: 1.5rem; 
+            margin: 1.5rem 0; 
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+        }
+        .interview-section { 
+            background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 30%); 
+            border-left: 5px solid #ff9800; 
+            padding: 2rem; 
+            margin: 2rem 0; 
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);
+        }
+        .comparison { 
+            background: #f3e5f5; 
+            border-left: 4px solid #9c27b0; 
+            padding: 1rem; 
+            margin: 1rem 0; 
+            border-radius: 6px;
+        }
+        .tip { 
+            background: #e8f5e8; 
+            border-left: 4px solid #4caf50; 
+            padding: 1rem; 
+            margin: 1rem 0; 
+            border-radius: 6px;
+            font-style: italic;
+        }
+        .framework-box {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+        ul, ol { margin-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 1rem 0; 
+            overflow-x: auto;
+            display: block;
+            white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+            table { 
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                font-size: 0.9rem;
+            }
+        }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #11998e; color: white; }
+        .highlight { background: #ffeb3b; padding: 2px 6px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">🏠 Home</a>
+                <a href="comprehensive-manual-qa-course.html" class="nav-btn">📚 Manual QA</a>
+                <a href="comprehensive-automation-qa-course.html" class="nav-btn">🤖 Automation QA</a>
+                <a href="excel-for-testing.html" class="nav-btn">📊 Excel for Testing</a>
+            </div>
+            <div class="visitor-counter">
+                👥 Visitors: <span id="visitorCount">Loading...</span>
+            </div>
+        </nav>
+
+        <header>
+            <h1>🤖 Complete Automation QA Testing Course</h1>
+            <p style="font-size: 1.2em; margin-top: 1rem;">Master Test Automation from Beginner to Expert Level</p>
+            <p>Learn with real code examples, GUI interactions, and industry best practices</p>
+        </header>
+
+        <div class="topic-section">
+            <h2>🚀 1. Introduction to Automation Testing</h2>
+            
+            <h3>🤔 What is Automation Testing?</h3>
+            <p>Imagine having a robot 🤖 that can click buttons, fill forms, and check results on your website 24/7 without getting tired. That's automation testing!</p>
+
+            <div class="comparison">
+                <h3>👨‍💼 Manual vs Automation Testing</h3>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Manual Testing 👨‍💻</th>
+                        <th>Automation Testing 🤖</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Speed</strong></td>
+                        <td>Slow (human speed)</td>
+                        <td>Fast (computer speed)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accuracy</strong></td>
+                        <td>Can make mistakes</td>
+                        <td>Always consistent</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost</strong></td>
+                        <td>High (human salary)</td>
+                        <td>Low (after initial setup)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Best for</strong></td>
+                        <td>Exploratory, Usability</td>
+                        <td>Regression, Load testing</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="gui-example">
+                <h3>🎯 Real-World Example: Amazon Login Test</h3>
+                <p><strong>Manual Process:</strong></p>
+                <ol>
+                    <li>Open browser → Navigate to Amazon.com</li>
+                    <li>Click "Sign In" → Type username/password</li>
+                    <li>Click "Sign In" → Check if login successful</li>
+                    <li>Time taken: 2-3 minutes per test</li>
+                </ol>
+                
+                <p><strong>Automated Process:</strong></p>
+                <ol>
+                    <li>Script runs automatically → Completes same steps</li>
+                    <li>Tests 100 different login scenarios</li>
+                    <li>Time taken: 30 seconds for all 100 tests!</li>
+                </ol>
+            </div>
+
+            <h3>✅ When to Use Automation?</h3>
+            <ul>
+                <li><strong>Repetitive tests:</strong> Login functionality tested 1000+ times</li>
+                <li><strong>Regression testing:</strong> Ensure old features still work</li>
+                <li><strong>Load testing:</strong> Simulate 10,000 users shopping simultaneously</li>
+                <li><strong>Cross-browser testing:</strong> Test on Chrome, Firefox, Safari, Edge</li>
+            </ul>
+
+            <h3>❌ When NOT to Use Automation?</h3>
+            <ul>
+                <li><strong>One-time tests:</strong> Testing a prototype feature</li>
+                <li><strong>Usability testing:</strong> How users feel about the interface</li>
+                <li><strong>Constantly changing features:</strong> Scripts become outdated quickly</li>
+                <li><strong>Visual/aesthetic testing:</strong> Does the design look good?</li>
+            </ul>
+        </div>
+
+        <div class="topic-section">
+            <h2>🛠️ 2. Popular Automation Tools</h2>
+
+            <h3>🌐 Selenium WebDriver</h3>
+            <p><em>The most popular web automation tool - like a virtual user that can control any browser</em></p>
+            
+            <div class="framework-box">
+                <h4>🎯 Selenium Capabilities</h4>
+                <ul>
+                    <li><strong>Multi-browser:</strong> Chrome, Firefox, Safari, Edge</li>
+                    <li><strong>Multi-language:</strong> Java, Python, C#, JavaScript</li>
+                    <li><strong>Cross-platform:</strong> Windows, Mac, Linux</li>
+                    <li><strong>Free & Open Source</strong></li>
+                </ul>
+            </div>
+
+            <div class="code-example">
+<strong>🐍 Selenium Python Example - Testing Google Search</strong>
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Start Chrome browser
+driver = webdriver.Chrome()
+
+# Navigate to Google
+driver.get("https://www.google.com")
+
+# Find search box and type "automation testing"
+search_box = driver.find_element(By.NAME, "q")
+search_box.send_keys("automation testing")
+search_box.send_keys(Keys.RETURN)
+
+# Wait for results to load
+time.sleep(2)
+
+# Check if results contain expected text
+results = driver.find_element(By.ID, "search")
+assert "Selenium" in results.text
+
+print("✅ Test Passed: Google search works!")
+
+# Close browser
+driver.quit()
+            </div>
+
+            <h3>🌲 Cypress</h3>
+            <p><em>Modern, developer-friendly tool - like Selenium but easier and faster</em></p>
+
+            <div class="framework-box">
+                <h4>🚀 Cypress Advantages</h4>
+                <ul>
+                    <li><strong>Real-time testing:</strong> See tests run in real browser</li>
+                    <li><strong>Automatic waiting:</strong> No need to add sleep commands</li>
+                    <li><strong>Built-in debugging:</strong> Easy to find what went wrong</li>
+                    <li><strong>Fast execution:</strong> Tests run very quickly</li>
+                </ul>
+            </div>
+
+            <div class="code-example">
+<strong>🌲 Cypress JavaScript Example - Testing Login</strong>
+
+describe('Login Test for E-commerce Site', () => {
+  it('Should login with valid credentials', () => {
+    // Visit the login page
+    cy.visit('https://shop.example.com/login')
+    
+    // Fill login form
+    cy.get('#email').type('student@example.com')
+    cy.get('#password').type('secure123')
+    
+    // Click login button
+    cy.get('#loginBtn').click()
+    
+    // Verify successful login
+    cy.url().should('include', '/dashboard')
+    cy.contains('Welcome back!').should('be.visible')
+    
+    // Check user menu is present
+    cy.get('.user-menu').should('exist')
+  })
+  
+  it('Should show error for invalid credentials', () => {
+    cy.visit('https://shop.example.com/login')
+    
+    cy.get('#email').type('wrong@email.com')
+    cy.get('#password').type('wrongpass')
+    cy.get('#loginBtn').click()
+    
+    // Verify error message
+    cy.contains('Invalid credentials').should('be.visible')
+    cy.url().should('include', '/login') // Still on login page
+  })
+})
+            </div>
+
+            <h3>🎭 Playwright</h3>
+            <p><em>Microsoft's modern automation tool - handles multiple browsers simultaneously</em></p>
+
+            <div class="code-example">
+<strong>🎭 Playwright Example - Cross-browser Testing</strong>
+
+const { test, expect } = require('@playwright/test');
+
+test('Shopping cart works on all browsers', async ({ page, browserName }) => {
+  console.log(`Testing on: ${browserName}`);
+  
+  // Navigate to shopping site
+  await page.goto('https://shop.example.com');
+  
+  // Add item to cart
+  await page.click('text=Add to Cart');
+  
+  // Go to cart
+  await page.click('.cart-icon');
+  
+  // Verify item is in cart
+  await expect(page.locator('.cart-item')).toBeVisible();
+  
+  // Check total price is correct
+  const total = await page.locator('.total-price').textContent();
+  expect(total).toContain('$29.99');
+});
+
+// This test runs automatically on Chrome, Firefox, and Safari!
+            </div>
+
+            <div class="comparison">
+                <h3>🏆 Tool Comparison</h3>
+                <table>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Best For</th>
+                        <th>Difficulty</th>
+                        <th>Speed</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Selenium</strong></td>
+                        <td>Enterprise, All browsers</td>
+                        <td>Medium</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cypress</strong></td>
+                        <td>Modern web apps, Developers</td>
+                        <td>Easy</td>
+                        <td>Fast</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Playwright</strong></td>
+                        <td>Cross-browser, API testing</td>
+                        <td>Easy-Medium</td>
+                        <td>Very Fast</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>💻 3. Programming Basics for Automation</h2>
+
+            <h3>🐍 Python Basics (Most Popular for Testing)</h3>
+            <div class="code-example">
+<strong>🎯 Python Fundamentals Every Tester Needs</strong>
+
+# Variables - storing information
+username = "testuser@gmail.com"
+password = "secure123"
+is_logged_in = False
+
+# Lists - multiple items
+test_browsers = ["Chrome", "Firefox", "Safari"]
+test_data = [
+    {"email": "user1@test.com", "password": "pass1"},
+    {"email": "user2@test.com", "password": "pass2"}
+]
+
+# Functions - reusable code blocks
+def login(email, pwd):
+    """Function to login to website"""
+    print(f"Logging in with: {email}")
+    # Login logic here
+    return True
+
+# Loops - repeat actions
+for browser in test_browsers:
+    print(f"Testing on {browser}")
+    # Run tests on each browser
+
+# Conditional logic - make decisions
+for user in test_data:
+    if login(user["email"], user["password"]):
+        print("✅ Login successful")
+    else:
+        print("❌ Login failed")
+            </div>
+
+            <h3>☕ Java Basics (Popular in Enterprise)</h3>
+            <div class="code-example">
+<strong>☕ Java Example for Selenium</strong>
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+
+public class LoginTest {
+    public static void main(String[] args) {
+        // Create driver instance
+        WebDriver driver = new ChromeDriver();
+        
+        try {
+            // Navigate to login page
+            driver.get("https://example.com/login");
+            
+            // Find elements and interact
+            driver.findElement(By.id("username")).sendKeys("testuser");
+            driver.findElement(By.id("password")).sendKeys("testpass");
+            driver.findElement(By.id("loginBtn")).click();
+            
+            // Verify login success
+            String pageTitle = driver.getTitle();
+            if (pageTitle.contains("Dashboard")) {
+                System.out.println("✅ Login test passed!");
+            } else {
+                System.out.println("❌ Login test failed!");
+            }
+            
+        } finally {
+            // Always close browser
+            driver.quit();
+        }
+    }
+}
+            </div>
+
+            <h3>🟨 JavaScript Basics (For Modern Tools)</h3>
+            <div class="code-example">
+<strong>🟨 JavaScript for Cypress/Playwright</strong>
+
+// Variables and data types
+const testUser = {
+    email: 'student@example.com',
+    password: 'secure123',
+    firstName: 'John'
+};
+
+// Arrays of test data
+const testUsers = [
+    { email: 'user1@test.com', password: 'pass1' },
+    { email: 'user2@test.com', password: 'pass2' },
+    { email: 'user3@test.com', password: 'pass3' }
+];
+
+// Functions
+function fillLoginForm(email, password) {
+    cy.get('#email').type(email);
+    cy.get('#password').type(password);
+    cy.get('#loginBtn').click();
+}
+
+// Async/Await for handling promises
+async function checkUserProfile(page) {
+    await page.goto('/profile');
+    const name = await page.textContent('.user-name');
+    console.log(`User name: ${name}`);
+}
+
+// Loop through test data
+testUsers.forEach((user, index) => {
+    it(`Login test ${index + 1}`, () => {
+        fillLoginForm(user.email, user.password);
+        cy.url().should('include', '/dashboard');
+    });
+});
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🎯 4. Locators & Selectors - Finding Elements</h2>
+            <p><em>Think of locators as GPS coordinates for elements on a webpage</em></p>
+
+            <div class="gui-example">
+                <h3>🎯 HTML Structure Example</h3>
+                <div class="code-example">
+&lt;!-- Sample login form HTML --&gt;
+&lt;form id="loginForm" class="auth-form"&gt;
+    &lt;input id="email" name="userEmail" placeholder="Enter email"&gt;
+    &lt;input id="password" type="password" class="pwd-field"&gt;
+    &lt;button id="submitBtn" class="btn primary"&gt;Login&lt;/button&gt;
+    &lt;a href="/forgot-password"&gt;Forgot Password?&lt;/a&gt;
+&lt;/form&gt;
+                </div>
+            </div>
+
+            <h3>🔍 Different Types of Locators</h3>
+
+            <div class="code-example">
+<strong>🐍 Selenium Python Locators</strong>
+
+from selenium.webdriver.common.by import By
+
+# 1. ID (Most reliable - should be unique)
+email_field = driver.find_element(By.ID, "email")
+
+# 2. Name attribute
+email_field = driver.find_element(By.NAME, "userEmail")
+
+# 3. Class name
+password_field = driver.find_element(By.CLASS_NAME, "pwd-field")
+
+# 4. Tag name (finds first matching tag)
+button = driver.find_element(By.TAG_NAME, "button")
+
+# 5. Link text (exact text match)
+forgot_link = driver.find_element(By.LINK_TEXT, "Forgot Password?")
+
+# 6. Partial link text
+forgot_link = driver.find_element(By.PARTIAL_LINK_TEXT, "Forgot")
+
+# 7. CSS Selector (very flexible)
+login_form = driver.find_element(By.CSS_SELECTOR, "#loginForm")
+primary_btn = driver.find_element(By.CSS_SELECTOR, ".btn.primary")
+email_input = driver.find_element(By.CSS_SELECTOR, "input[name='userEmail']")
+
+# 8. XPath (most powerful but complex)
+email_field = driver.find_element(By.XPATH, "//input[@id='email']")
+login_btn = driver.find_element(By.XPATH, "//button[text()='Login']")
+            </div>
+
+            <div class="code-example">
+<strong>🌲 Cypress Selectors</strong>
+
+// CSS Selectors (Cypress uses CSS by default)
+cy.get('#email')                    // ID
+cy.get('.pwd-field')               // Class
+cy.get('input[name="userEmail"]')  // Attribute
+cy.get('#loginForm button')       // Descendant
+
+// Cypress special commands
+cy.contains('Login')               // Find by text content
+cy.get('button').contains('Login') // Button containing "Login"
+
+// Multiple elements
+cy.get('.menu-item').first()       // First element
+cy.get('.menu-item').last()        // Last element
+cy.get('.menu-item').eq(2)         // Third element (0-indexed)
+
+// Chaining (very powerful in Cypress)
+cy.get('#loginForm')
+  .find('input[type="password"]')
+  .type('mypassword')
+            </div>
+
+            <h3>🎯 Best Practices for Locators</h3>
+            <div class="tip">
+                <strong>Locator Priority (Most Reliable → Least Reliable):</strong>
+                <ol>
+                    <li><strong>ID:</strong> <code>By.ID("email")</code> - Unique and stable</li>
+                    <li><strong>Name:</strong> <code>By.NAME("userEmail")</code> - Usually stable</li>
+                    <li><strong>CSS Selector:</strong> <code>By.CSS_SELECTOR("#email")</code> - Flexible</li>
+                    <li><strong>XPath:</strong> <code>By.XPATH("//input[@id='email']")</code> - Powerful but brittle</li>
+                    <li><strong>Class Name:</strong> <code>By.CLASS_NAME("input-field")</code> - Can change with styling</li>
+                </ol>
+            </div>
+
+            <div class="gui-example">
+                <h3>🚨 Common Locator Problems & Solutions</h3>
+                
+                <p><strong>Problem 1: Dynamic IDs</strong></p>
+                <div class="code-example">
+&lt;!-- ID changes every time --&gt;
+&lt;button id="btn_12345_submit"&gt;Submit&lt;/button&gt;
+
+# ❌ Bad: Will fail when ID changes
+driver.find_element(By.ID, "btn_12345_submit")
+
+# ✅ Good: Use partial match
+driver.find_element(By.CSS_SELECTOR, "[id*='submit']")
+driver.find_element(By.XPATH, "//button[contains(@id, 'submit')]")
+                </div>
+
+                <p><strong>Problem 2: Multiple Similar Elements</strong></p>
+                <div class="code-example">
+&lt;!-- Multiple buttons with same class --&gt;
+&lt;button class="btn"&gt;Cancel&lt;/button&gt;
+&lt;button class="btn"&gt;Submit&lt;/button&gt;
+
+# ❌ Bad: Gets first button (Cancel)
+driver.find_element(By.CLASS_NAME, "btn")
+
+# ✅ Good: Be more specific
+driver.find_element(By.XPATH, "//button[text()='Submit']")
+cy.get('button').contains('Submit')
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🏗️ 5. Test Frameworks</h2>
+            <p><em>Frameworks are like blueprints that organize your tests and make them easy to manage</em></p>
+
+            <h3>🐍 Pytest (Python)</h3>
+            <div class="framework-box">
+                <h4>Why Pytest is Popular:</h4>
+                <ul>
+                    <li><strong>Simple syntax:</strong> Tests look like regular functions</li>
+                    <li><strong>Powerful assertions:</strong> Clear error messages</li>
+                    <li><strong>Fixtures:</strong> Setup and teardown made easy</li>
+                    <li><strong>Plugins:</strong> Extend functionality easily</li>
+                </ul>
+            </div>
+
+            <div class="code-example">
+<strong>🐍 Pytest Example - E-commerce Testing</strong>
+
+import pytest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+class TestEcommerce:
+    
+    @pytest.fixture
+    def driver(self):
+        """Setup: Start browser before each test"""
+        driver = webdriver.Chrome()
+        driver.get("https://shop.example.com")
+        yield driver  # This is where test runs
+        driver.quit()  # Cleanup: Close browser after test
+
+    def test_user_can_search_products(self, driver):
+        """Test: Search functionality works"""
+        # Find search box and search for "laptop"
+        search_box = driver.find_element(By.NAME, "search")
+        search_box.send_keys("laptop")
+        search_box.submit()
+        
+        # Verify results are shown
+        results = driver.find_elements(By.CLASS_NAME, "product-item")
+        assert len(results) > 0, "No search results found!"
+        
+        # Verify results contain search term
+        first_result = results[0].text
+        assert "laptop" in first_result.lower()
+
+    def test_user_can_add_to_cart(self, driver):
+        """Test: Adding items to cart works"""
+        # Click on first product
+        driver.find_element(By.CLASS_NAME, "product-item").click()
+        
+        # Add to cart
+        driver.find_element(By.ID, "add-to-cart").click()
+        
+        # Check cart counter updated
+        cart_count = driver.find_element(By.CLASS_NAME, "cart-count").text
+        assert cart_count == "1"
+
+    @pytest.mark.smoke
+    def test_homepage_loads(self, driver):
+        """Smoke test: Basic homepage functionality"""
+        # Check title
+        assert "Shop" in driver.title
+        
+        # Check main elements exist
+        assert driver.find_element(By.CLASS_NAME, "header")
+        assert driver.find_element(By.CLASS_NAME, "main-content")
+        assert driver.find_element(By.CLASS_NAME, "footer")
+
+# Run specific tests:
+# pytest -m smoke  (runs only smoke tests)
+# pytest test_ecommerce.py::TestEcommerce::test_user_can_search_products
+            </div>
+
+            <h3>☕ TestNG (Java)</h3>
+            <div class="code-example">
+<strong>☕ TestNG Example - Banking Application</strong>
+
+import org.testng.annotations.*;
+import org.testng.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+
+public class BankingTests {
+    
+    WebDriver driver;
+    
+    @BeforeMethod
+    public void setUp() {
+        // Setup: Start browser before each test
+        driver = new ChromeDriver();
+        driver.get("https://bank.example.com");
+    }
+    
+    @AfterMethod
+    public void tearDown() {
+        // Cleanup: Close browser after each test
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+    
+    @Test(priority = 1, groups = {"smoke"})
+    public void testLoginFunctionality() {
+        // Login test
+        driver.findElement(By.id("username")).sendKeys("testuser");
+        driver.findElement(By.id("password")).sendKeys("testpass");
+        driver.findElement(By.id("loginBtn")).click();
+        
+        // Verify login success
+        String pageTitle = driver.getTitle();
+        Assert.assertTrue(pageTitle.contains("Dashboard"), 
+                         "Login failed - not redirected to dashboard");
+    }
+    
+    @Test(priority = 2, dependsOnMethods = {"testLoginFunctionality"})
+    public void testMoneyTransfer() {
+        // This test runs only if login test passes
+        testLoginFunctionality(); // Login first
+        
+        // Transfer money
+        driver.findElement(By.linkText("Transfer Money")).click();
+        driver.findElement(By.id("amount")).sendKeys("100");
+        driver.findElement(By.id("recipient")).sendKeys("john@example.com");
+        driver.findElement(By.id("transferBtn")).click();
+        
+        // Verify success message
+        String message = driver.findElement(By.class("success-msg")).getText();
+        Assert.assertEquals(message, "Transfer completed successfully");
+    }
+    
+    @Test(dataProvider = "loginData")
+    public void testMultipleLogins(String username, String password, boolean shouldPass) {
+        driver.findElement(By.id("username")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.id("loginBtn")).click();
+        
+        if (shouldPass) {
+            Assert.assertTrue(driver.getTitle().contains("Dashboard"));
+        } else {
+            Assert.assertTrue(driver.getCurrentUrl().contains("login"));
+        }
+    }
+    
+    @DataProvider(name = "loginData")
+    public Object[][] getLoginData() {
+        return new Object[][] {
+            {"validuser", "validpass", true},
+            {"invaliduser", "wrongpass", false},
+            {"", "", false},
+            {"validuser", "", false}
+        };
+    }
+}
+
+// Run tests:
+// mvn test -Dgroups=smoke  (runs only smoke tests)
+            </div>
+
+            <h3>🟨 Mocha/Jest (JavaScript)</h3>
+            <div class="code-example">
+<strong>🟨 Mocha + Chai Example - Social Media App</strong>
+
+const { expect } = require('chai');
+const { Builder, By, until } = require('selenium-webdriver');
+
+describe('Social Media App Tests', function() {
+    let driver;
+    
+    // Setup before all tests
+    before(async function() {
+        this.timeout(10000);
+        driver = await new Builder().forBrowser('chrome').build();
+    });
+    
+    // Cleanup after all tests
+    after(async function() {
+        await driver.quit();
+    });
+    
+    beforeEach(async function() {
+        // Navigate to homepage before each test
+        await driver.get('https://social.example.com');
+    });
+    
+    it('should allow user to create a post', async function() {
+        // Login first
+        await driver.findElement(By.id('username')).sendKeys('testuser');
+        await driver.findElement(By.id('password')).sendKeys('testpass');
+        await driver.findElement(By.id('loginBtn')).click();
+        
+        // Wait for dashboard to load
+        await driver.wait(until.elementLocated(By.class('create-post')), 5000);
+        
+        // Create new post
+        const postText = 'This is my automated test post!';
+        await driver.findElement(By.class('post-input')).sendKeys(postText);
+        await driver.findElement(By.class('publish-btn')).click();
+        
+        // Verify post appears in feed
+        const posts = await driver.findElements(By.class('post-item'));
+        expect(posts.length).to.be.greaterThan(0);
+        
+        const latestPost = await posts[0].getText();
+        expect(latestPost).to.include(postText);
+    });
+    
+    it('should allow user to like posts', async function() {
+        // Assume user is already logged in and posts exist
+        const likeButton = await driver.findElement(By.class('like-btn'));
+        const initialLikes = await driver.findElement(By.class('like-count')).getText();
+        
+        // Click like button
+        await likeButton.click();
+        
+        // Verify like count increased
+        await driver.wait(until.elementTextContains(
+            driver.findElement(By.class('like-count')), 
+            (parseInt(initialLikes) + 1).toString()
+        ), 3000);
+        
+        const newLikes = await driver.findElement(By.class('like-count')).getText();
+        expect(parseInt(newLikes)).to.equal(parseInt(initialLikes) + 1);
+    });
+});
+
+// Run tests:
+// npm test
+// mocha test/social-media-tests.js
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>🔄 6. CI/CD Integration</h2>
+            <p><em>Continuous Integration/Continuous Deployment - Automatically run tests when code changes</em></p>
+
+            <div class="gui-example">
+                <h3>🔄 What is CI/CD in Simple Terms?</h3>
+                <p><strong>Traditional Process:</strong></p>
+                <ol>
+                    <li>Developer writes code → Manually runs tests → Manually deploys</li>
+                    <li>Takes hours/days → Error-prone → Tests forgotten</li>
+                </ol>
+                
+                <p><strong>CI/CD Process:</strong></p>
+                <ol>
+                    <li>Developer pushes code → Tests run automatically → Deploys automatically (if tests pass)</li>
+                    <li>Takes minutes → Reliable → Tests always run</li>
+                </ol>
+            </div>
+
+            <h3>🐙 GitHub Actions Example</h3>
+            <div class="code-example">
+<strong>📄 .github/workflows/test.yml</strong>
+
+name: Automated Testing Pipeline
+
+# Trigger: Run tests when code is pushed or PR is created
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Get the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    # Step 2: Setup Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: |
+        pip install selenium pytest webdriver-manager
+        
+    # Step 4: Install Chrome browser
+    - name: Install Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install google-chrome-stable
+    
+    # Step 5: Run tests
+    - name: Run Selenium tests
+      run: |
+        pytest tests/ --verbose --html=report.html
+    
+    # Step 6: Upload test results
+    - name: Upload test report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-report
+        path: report.html
+
+  # Deploy only if tests pass
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Deploy to production
+      run: echo "Deploying to production..."
+            </div>
+
+            <h3>🔧 Jenkins Pipeline Example</h3>
+            <div class="code-example">
+<strong>📄 Jenkinsfile</strong>
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Get code from repository
+                git 'https://github.com/yourrepo/tests.git'
+            }
+        }
+        
+        stage('Setup Environment') {
+            steps {
+                // Install dependencies
+                sh 'pip install -r requirements.txt'
+                sh 'npm install'
+            }
+        }
+        
+        stage('Run Unit Tests') {
+            steps {
+                // Run quick unit tests first
+                sh 'pytest tests/unit/ --junitxml=unit-results.xml'
+            }
+        }
+        
+        stage('Run Integration Tests') {
+            parallel {
+                stage('Chrome Tests') {
+                    steps {
+                        sh 'pytest tests/integration/ --browser=chrome --junitxml=chrome-results.xml'
+                    }
+                }
+                stage('Firefox Tests') {
+                    steps {
+                        sh 'pytest tests/integration/ --browser=firefox --junitxml=firefox-results.xml'
+                    }
+                }
+            }
+        }
+        
+        stage('Run API Tests') {
+            steps {
+                sh 'pytest tests/api/ --junitxml=api-results.xml'
+            }
+        }
+        
+        stage('Generate Report') {
+            steps {
+                // Combine all test results
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'reports',
+                    reportFiles: 'index.html',
+                    reportName: 'Test Report'
+                ])
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Publish test results
+            junit 'results.xml'
+            
+            // Clean up
+            cleanWs()
+        }
+        
+        failure {
+            // Send notification if tests fail
+            emailext(
+                subject: 'Test Failed: ${env.JOB_NAME} - ${env.BUILD_NUMBER}',
+                body: 'The automated tests have failed. Please check the console output.',
+                to: 'dev-team@company.com'
+            )
+        }
+        
+        success {
+            echo 'All tests passed! Ready for deployment.'
+        }
+    }
+}
+            </div>
+
+            <h3>🔗 Benefits of CI/CD Integration</h3>
+            <ul>
+                <li><strong>Catch bugs early:</strong> Tests run immediately when code changes</li>
+                <li><strong>Consistent testing:</strong> Same tests run in same environment every time</li>
+                <li><strong>Fast feedback:</strong> Developers know within minutes if something broke</li>
+                <li><strong>Automated deployment:</strong> If tests pass, code goes live automatically</li>
+                <li><strong>Quality gates:</strong> Bad code can't reach production</li>
+            </ul>
+        </div>
+
+        <div class="topic-section">
+            <h2>📊 7. Reporting & Logging</h2>
+
+            <h3>📈 Test Reporting with Allure</h3>
+            <div class="code-example">
+<strong>🐍 Python + Allure Example</strong>
+
+import allure
+import pytest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+@allure.feature('User Authentication')
+class TestLogin:
+    
+    @allure.story('Valid Login')
+    @allure.severity(allure.severity_level.CRITICAL)
+    def test_valid_login(self, driver):
+        with allure.step('Navigate to login page'):
+            driver.get('https://example.com/login')
+            allure.attach(driver.get_screenshot_as_png(), 
+                         name='Login Page', 
+                         attachment_type=allure.attachment_type.PNG)
+        
+        with allure.step('Enter valid credentials'):
+            driver.find_element(By.ID, 'username').send_keys('testuser')
+            driver.find_element(By.ID, 'password').send_keys('testpass')
+        
+        with allure.step('Click login button'):
+            driver.find_element(By.ID, 'loginBtn').click()
+        
+        with allure.step('Verify successful login'):
+            assert 'Dashboard' in driver.title
+            allure.attach(driver.get_screenshot_as_png(), 
+                         name='Dashboard After Login', 
+                         attachment_type=allure.attachment_type.PNG)
+
+    @allure.story('Invalid Login')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_invalid_login(self, driver):
+        with allure.step('Navigate to login page'):
+            driver.get('https://example.com/login')
+        
+        with allure.step('Enter invalid credentials'):
+            driver.find_element(By.ID, 'username').send_keys('wronguser')
+            driver.find_element(By.ID, 'password').send_keys('wrongpass')
+        
+        with allure.step('Click login button'):
+            driver.find_element(By.ID, 'loginBtn').click()
+        
+        with allure.step('Verify error message appears'):
+            error_msg = driver.find_element(By.CLASS_NAME, 'error-message')
+            assert 'Invalid credentials' in error_msg.text
+
+# Generate report: allure serve allure-results/
+            </div>
+
+            <h3>📝 Custom Logging</h3>
+            <div class="code-example">
+<strong>🐍 Advanced Logging Example</strong>
+
+import logging
+import datetime
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(f'test_log_{datetime.datetime.now().strftime("%Y%m%d_%H%M%S")}.log'),
+        logging.StreamHandler()
+    ]
+)
+
+class TestWithLogging:
+    
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
+        self.driver = None
+    
+    def setup(self):
+        """Setup test environment"""
+        self.logger.info("🚀 Starting test setup")
+        try:
+            self.driver = webdriver.Chrome()
+            self.logger.info("✅ Browser started successfully")
+        except Exception as e:
+            self.logger.error(f"❌ Failed to start browser: {str(e)}")
+            raise
+    
+    def test_shopping_cart(self):
+        """Test adding items to shopping cart"""
+        test_start_time = datetime.datetime.now()
+        self.logger.info("🛒 Starting shopping cart test")
+        
+        try:
+            # Navigate to website
+            self.logger.info("Navigating to e-commerce site")
+            self.driver.get("https://shop.example.com")
+            self.logger.info(f"Page title: {self.driver.title}")
+            
+            # Search for product
+            search_term = "laptop"
+            self.logger.info(f"Searching for: {search_term}")
+            search_box = self.driver.find_element(By.NAME, "search")
+            search_box.send_keys(search_term)
+            search_box.submit()
+            
+            # Log search results
+            results = self.driver.find_elements(By.CLASS_NAME, "product-item")
+            self.logger.info(f"Found {len(results)} search results")
+            
+            if len(results) == 0:
+                self.logger.warning("⚠️ No search results found!")
+                return False
+            
+            # Click first product
+            first_product = results[0]
+            product_name = first_product.find_element(By.CLASS_NAME, "product-title").text
+            self.logger.info(f"Clicking on product: {product_name}")
+            first_product.click()
+            
+            # Add to cart
+            self.logger.info("Adding product to cart")
+            add_to_cart_btn = self.driver.find_element(By.ID, "add-to-cart")
+            add_to_cart_btn.click()
+            
+            # Verify cart update
+            cart_count = self.driver.find_element(By.CLASS_NAME, "cart-count").text
+            self.logger.info(f"Cart count after adding item: {cart_count}")
+            
+            if cart_count == "1":
+                self.logger.info("✅ Item successfully added to cart")
+                return True
+            else:
+                self.logger.error(f"❌ Expected cart count 1, but got {cart_count}")
+                return False
+                
+        except Exception as e:
+            self.logger.error(f"❌ Test failed with error: {str(e)}")
+            # Take screenshot on failure
+            if self.driver:
+                screenshot_name = f"error_screenshot_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+                self.driver.save_screenshot(screenshot_name)
+                self.logger.error(f"Screenshot saved: {screenshot_name}")
+            return False
+        
+        finally:
+            test_end_time = datetime.datetime.now()
+            test_duration = test_end_time - test_start_time
+            self.logger.info(f"🕐 Test completed in: {test_duration.total_seconds()} seconds")
+    
+    def teardown(self):
+        """Cleanup test environment"""
+        self.logger.info("🧹 Starting test cleanup")
+        if self.driver:
+            self.driver.quit()
+            self.logger.info("✅ Browser closed successfully")
+
+# Usage
+if __name__ == "__main__":
+    test = TestWithLogging()
+    test.setup()
+    result = test.test_shopping_cart()
+    test.teardown()
+    
+    if result:
+        print("🎉 Test PASSED")
+    else:
+        print("💥 Test FAILED")
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <h2>✨ 8. Best Practices & Maintenance</h2>
+
+            <h3>🏗️ Page Object Model (POM)</h3>
+            <p><em>Organize your code like a well-structured house - each page has its own room</em></p>
+
+            <div class="code-example">
+<strong>🏠 Page Object Model Example</strong>
+
+# pages/login_page.py
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+class LoginPage:
+    """Page Object for Login Page"""
+    
+    def __init__(self, driver):
+        self.driver = driver
+        self.wait = WebDriverWait(driver, 10)
+    
+    # Locators (like addresses for elements)
+    USERNAME_FIELD = (By.ID, "username")
+    PASSWORD_FIELD = (By.ID, "password")
+    LOGIN_BUTTON = (By.ID, "loginBtn")
+    ERROR_MESSAGE = (By.CLASS_NAME, "error-msg")
+    
+    # Actions (what user can do on this page)
+    def enter_username(self, username):
+        """Enter username in the username field"""
+        username_field = self.wait.until(EC.element_to_be_clickable(self.USERNAME_FIELD))
+        username_field.clear()
+        username_field.send_keys(username)
+    
+    def enter_password(self, password):
+        """Enter password in the password field"""
+        password_field = self.wait.until(EC.element_to_be_clickable(self.PASSWORD_FIELD))
+        password_field.clear()
+        password_field.send_keys(password)
+    
+    def click_login(self):
+        """Click the login button"""
+        login_btn = self.wait.until(EC.element_to_be_clickable(self.LOGIN_BUTTON))
+        login_btn.click()
+    
+    def login(self, username, password):
+        """Complete login process"""
+        self.enter_username(username)
+        self.enter_password(password)
+        self.click_login()
+    
+    def get_error_message(self):
+        """Get error message text"""
+        error_element = self.wait.until(EC.visibility_of_element_located(self.ERROR_MESSAGE))
+        return error_element.text
+    
+    def is_error_displayed(self):
+        """Check if error message is shown"""
+        try:
+            self.wait.until(EC.visibility_of_element_located(self.ERROR_MESSAGE))
+            return True
+        except:
+            return False
+
+# pages/dashboard_page.py
+class DashboardPage:
+    """Page Object for Dashboard Page"""
+    
+    def __init__(self, driver):
+        self.driver = driver
+        self.wait = WebDriverWait(driver, 10)
+    
+    WELCOME_MESSAGE = (By.CLASS_NAME, "welcome-msg")
+    USER_MENU = (By.CLASS_NAME, "user-menu")
+    LOGOUT_BUTTON = (By.ID, "logout")
+    
+    def is_welcome_message_displayed(self):
+        """Check if welcome message is shown"""
+        try:
+            self.wait.until(EC.visibility_of_element_located(self.WELCOME_MESSAGE))
+            return True
+        except:
+            return False
+    
+    def get_welcome_message(self):
+        """Get welcome message text"""
+        welcome_element = self.wait.until(EC.visibility_of_element_located(self.WELCOME_MESSAGE))
+        return welcome_element.text
+    
+    def logout(self):
+        """Logout from the application"""
+        user_menu = self.wait.until(EC.element_to_be_clickable(self.USER_MENU))
+        user_menu.click()
+        
+        logout_btn = self.wait.until(EC.element_to_be_clickable(self.LOGOUT_BUTTON))
+        logout_btn.click()
+
+# tests/test_login.py
+import pytest
+from selenium import webdriver
+from pages.login_page import LoginPage
+from pages.dashboard_page import DashboardPage
+
+class TestLogin:
+    
+    @pytest.fixture
+    def driver(self):
+        driver = webdriver.Chrome()
+        driver.get("https://example.com/login")
+        yield driver
+        driver.quit()
+    
+    def test_valid_login(self, driver):
+        """Test login with valid credentials"""
+        # Create page objects
+        login_page = LoginPage(driver)
+        dashboard_page = DashboardPage(driver)
+        
+        # Perform login
+        login_page.login("testuser", "testpass")
+        
+        # Verify successful login
+        assert dashboard_page.is_welcome_message_displayed()
+        welcome_text = dashboard_page.get_welcome_message()
+        assert "Welcome" in welcome_text
+    
+    def test_invalid_login(self, driver):
+        """Test login with invalid credentials"""
+        login_page = LoginPage(driver)
+        
+        # Attempt login with wrong credentials
+        login_page.login("wronguser", "wrongpass")
+        
+        # Verify error is shown
+        assert login_page.is_error_displayed()
+        error_text = login_page.get_error_message()
+        assert "Invalid credentials" in error_text
+            </div>
+
+            <h3>🔧 Best Practices Checklist</h3>
+            <div class="tip">
+                <h4>✅ Code Organization</h4>
+                <ul>
+                    <li><strong>Use Page Object Model:</strong> One class per page</li>
+                    <li><strong>Separate test data:</strong> Keep test data in separate files</li>
+                    <li><strong>Use meaningful names:</strong> <code>test_user_can_login()</code> not <code>test1()</code></li>
+                    <li><strong>Group related tests:</strong> All login tests in one class</li>
+                </ul>
+
+                <h4>⚡ Performance & Reliability</h4>
+                <ul>
+                    <li><strong>Use explicit waits:</strong> <code>WebDriverWait</code> instead of <code>time.sleep()</code></li>
+                    <li><strong>Clean up resources:</strong> Always close browsers</li>
+                    <li><strong>Handle exceptions:</strong> Use try-catch blocks</li>
+                    <li><strong>Parallel execution:</strong> Run tests on multiple browsers simultaneously</li>
+                </ul>
+
+                <h4>🎯 Test Design</h4>
+                <ul>
+                    <li><strong>Independent tests:</strong> Each test should work alone</li>
+                    <li><strong>Test one thing:</strong> Don't test login and checkout in same test</li>
+                    <li><strong>Use test data wisely:</strong> Fresh data for each test</li>
+                    <li><strong>Verify results:</strong> Always assert what you expect</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="interview-section">
+            <h2>🎤 Interview Questions for Automation QA</h2>
+            
+            <h3>🎯 Basic Questions</h3>
+            <ol>
+                <li><strong>What are the advantages of automation testing over manual testing?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong> Speed (faster execution), Accuracy (no human errors), Reusability (run same test multiple times), Cost-effective (long term), 24/7 execution capability, Better test coverage.
+                    </div>
+                </li>
+                
+                <li><strong>Explain the Page Object Model with an example.</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong> POM is a design pattern where each web page is represented as a class. All elements and actions for that page are defined in the class. Example: LoginPage class contains username field, password field, and login() method.
+                    </div>
+                </li>
+                
+                <li><strong>How do you handle dynamic elements in Selenium?</strong></li>
+                <li><strong>What is a test framework? Name a few you've used.</strong></li>
+                <li><strong>How do you integrate automation tests with CI/CD?</strong></li>
+            </ol>
+
+            <h3>🔧 Intermediate Questions</h3>
+            <ol>
+                <li><strong>What are different types of locators? Which is most reliable?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong> ID (most reliable - unique), Name (reliable), CSS Selector (flexible), XPath (powerful but slow), Class Name (can change), Tag Name (least reliable). ID is most reliable because it should be unique on the page.
+                    </div>
+                </li>
+                
+                <li><strong>How do you handle waits in Selenium? Explain different types.</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong> 
+                        <ul>
+                            <li><strong>Implicit Wait:</strong> Global wait for all elements (e.g., 10 seconds)</li>
+                            <li><strong>Explicit Wait:</strong> Wait for specific condition (e.g., element to be clickable)</li>
+                            <li><strong>Fluent Wait:</strong> Wait with polling interval and ignore exceptions</li>
+                            <li><strong>Thread.sleep():</strong> Hard wait (avoid this - bad practice)</li>
+                        </ul>
+                        <strong>Best Practice:</strong> Use Explicit Waits for better control.
+                    </div>
+                </li>
+                
+                <li><strong>How do you manage test data in automation?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong> 
+                        <ul>
+                            <li><strong>External files:</strong> Excel, CSV, JSON files</li>
+                            <li><strong>Data providers:</strong> TestNG @DataProvider, Pytest fixtures</li>
+                            <li><strong>Database:</strong> Fetch data from test databases</li>
+                            <li><strong>Configuration files:</strong> Properties files for environment data</li>
+                            <li><strong>Test data factories:</strong> Generate random test data</li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li><strong>What is the difference between Selenium and Cypress?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr><th style="border: 1px solid #ddd; padding: 8px;">Aspect</th><th style="border: 1px solid #ddd; padding: 8px;">Selenium</th><th style="border: 1px solid #ddd; padding: 8px;">Cypress</th></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 8px;">Language</td><td style="border: 1px solid #ddd; padding: 8px;">Multiple (Java, Python, C#)</td><td style="border: 1px solid #ddd; padding: 8px;">JavaScript only</td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 8px;">Browser Support</td><td style="border: 1px solid #ddd; padding: 8px;">All major browsers</td><td style="border: 1px solid #ddd; padding: 8px;">Limited (Chrome, Firefox, Edge)</td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 8px;">Speed</td><td style="border: 1px solid #ddd; padding: 8px;">Slower</td><td style="border: 1px solid #ddd; padding: 8px;">Faster</td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 8px;">Real Device Testing</td><td style="border: 1px solid #ddd; padding: 8px;">Yes</td><td style="border: 1px solid #ddd; padding: 8px;">No</td></tr>
+                        </table>
+                    </div>
+                </li>
+                
+                <li><strong>How do you handle exceptions in your automation scripts?</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong> 
+                        <ul>
+                            <li><strong>Try-Catch blocks:</strong> Handle specific exceptions gracefully</li>
+                            <li><strong>Custom exceptions:</strong> Create meaningful error messages</li>
+                            <li><strong>Screenshots on failure:</strong> Capture evidence for debugging</li>
+                            <li><strong>Logging:</strong> Log all actions and errors</li>
+                            <li><strong>Retry mechanisms:</strong> Retry failed operations</li>
+                            <li><strong>Graceful cleanup:</strong> Close browsers even on failure</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+
+            <h3>🎯 Advanced Scenario Questions</h3>
+            <ol>
+                <li><strong>"Your automation tests are flaky - sometimes pass, sometimes fail. How do you debug this?"</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>Check timing issues:</strong> Add proper waits, remove hard sleeps</li>
+                            <li><strong>Environment dependencies:</strong> Ensure consistent test environment</li>
+                            <li><strong>Data dependencies:</strong> Use fresh test data for each run</li>
+                            <li><strong>Network issues:</strong> Handle timeouts and retries</li>
+                            <li><strong>Element identification:</strong> Use more stable locators</li>
+                            <li><strong>Parallel execution conflicts:</strong> Avoid shared resources</li>
+                            <li><strong>Browser state:</strong> Clear cache/cookies between tests</li>
+                        </ul>
+                        <strong>Example:</strong> "I found tests failing randomly due to page load timing. I replaced Thread.sleep() with WebDriverWait for element visibility."
+                    </div>
+                </li>
+                
+                <li><strong>"You need to test file upload functionality. How would you automate this?"</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>Method 1:</strong> Use sendKeys() to send file path to input element</li>
+                            <li><strong>Method 2:</strong> Use Robot class (Java) or pyautogui (Python) for OS dialog</li>
+                            <li><strong>Method 3:</strong> Use JavaScript executor to set file input value</li>
+                            <li><strong>Validation:</strong> Check file name appears, verify upload success message</li>
+                        </ul>
+                        <strong>Code Example:</strong><br>
+                        <code>driver.find_element(By.ID, "fileInput").send_keys("/path/to/test-file.pdf")</code>
+                    </div>
+                </li>
+                
+                <li><strong>"How would you test a single-page application (SPA) with dynamic content?"</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>Wait for AJAX:</strong> Wait for API calls to complete</li>
+                            <li><strong>Dynamic waits:</strong> Wait for specific elements to appear/disappear</li>
+                            <li><strong>URL changes:</strong> Monitor URL hash changes in SPAs</li>
+                            <li><strong>State management:</strong> Test different application states</li>
+                            <li><strong>Network monitoring:</strong> Intercept and verify API calls</li>
+                            <li><strong>Virtual DOM:</strong> Handle React/Angular component updates</li>
+                        </ul>
+                        <strong>Best Tool:</strong> Cypress excels at SPA testing with built-in wait mechanisms.
+                    </div>
+                </li>
+                
+                <li><strong>"Describe a challenging automation scenario you solved and how."</strong>
+                    <div class="tip">
+                        <strong>Sample Answer:</strong><br>
+                        "I had to automate a financial application with complex multi-step workflows. The challenge was handling dynamic tables with thousands of rows and unpredictable loading times. 
+                        <br><br>
+                        <strong>Solution:</strong>
+                        <ul>
+                            <li>Implemented custom wait conditions for table loading</li>
+                            <li>Used virtual scrolling to handle large datasets</li>
+                            <li>Created reusable methods for table operations</li>
+                            <li>Added retry mechanisms for network-dependent operations</li>
+                            <li>Reduced test execution time from 4 hours to 45 minutes</li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li><strong>"How do you decide what to automate and what to test manually?"</strong>
+                    <div class="tip">
+                        <strong>Answer - Automate When:</strong>
+                        <ul>
+                            <li><strong>Repetitive tests:</strong> Regression suites, smoke tests</li>
+                            <li><strong>Stable functionality:</strong> Core features unlikely to change</li>
+                            <li><strong>Data-driven tests:</strong> Same test with multiple data sets</li>
+                            <li><strong>Load/Performance tests:</strong> Simulate many users</li>
+                            <li><strong>Cross-browser tests:</strong> Same test on multiple browsers</li>
+                        </ul>
+                        <strong>Manual When:</strong>
+                        <ul>
+                            <li><strong>Exploratory testing:</strong> Finding unexpected issues</li>
+                            <li><strong>Usability testing:</strong> User experience evaluation</li>
+                            <li><strong>Ad-hoc testing:</strong> One-time scenarios</li>
+                            <li><strong>Visual testing:</strong> UI/UX appearance</li>
+                            <li><strong>New features:</strong> Still evolving requirements</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+
+            <h3>🏗️ Architecture & Framework Questions</h3>
+            <ol>
+                <li><strong>"Design an automation framework from scratch. What components would you include?"</strong>
+                    <div class="tip">
+                        <strong>Answer - Framework Components:</strong>
+                        <ul>
+                            <li><strong>Page Object Model:</strong> Separate page classes for maintainability</li>
+                            <li><strong>Test Data Management:</strong> External files (JSON, Excel) for test data</li>
+                            <li><strong>Configuration Management:</strong> Environment-specific properties</li>
+                            <li><strong>Utilities/Helpers:</strong> Common functions (screenshots, waits, DB connections)</li>
+                            <li><strong>Reporting:</strong> HTML reports with screenshots and logs</li>
+                            <li><strong>Logging:</strong> Detailed execution logs for debugging</li>
+                            <li><strong>Test Execution:</strong> TestNG/Pytest for test management</li>
+                            <li><strong>CI/CD Integration:</strong> Jenkins/GitHub Actions integration</li>
+                        </ul>
+                        <strong>Folder Structure:</strong><br>
+                        <code>
+                        tests/ → Test files<br>
+                        pages/ → Page object classes<br>
+                        utils/ → Helper functions<br>
+                        data/ → Test data files<br>
+                        config/ → Configuration files<br>
+                        reports/ → Test execution reports<br>
+                        </code>
+                    </div>
+                </li>
+                
+                <li><strong>"How do you implement data-driven testing?"</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>External Data Sources:</strong> CSV, Excel, JSON, XML files</li>
+                            <li><strong>Framework Support:</strong> TestNG @DataProvider, Pytest @pytest.mark.parametrize</li>
+                            <li><strong>Database Integration:</strong> Fetch test data from databases</li>
+                            <li><strong>Dynamic Data:</strong> Generate test data at runtime</li>
+                        </ul>
+                        <strong>Example:</strong><br>
+                        <code>
+                        @pytest.mark.parametrize("username,password,expected", [<br>
+                        &nbsp;&nbsp;("valid_user", "valid_pass", "success"),<br>
+                        &nbsp;&nbsp;("invalid_user", "wrong_pass", "error")<br>
+                        ])<br>
+                        def test_login(username, password, expected):
+                        </code>
+                    </div>
+                </li>
+                
+                <li><strong>"Explain your experience with cross-browser testing."</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>Local Testing:</strong> Different WebDriver instances (Chrome, Firefox, Safari)</li>
+                            <li><strong>Cloud Platforms:</strong> BrowserStack, Sauce Labs, LambdaTest</li>
+                            <li><strong>Parallel Execution:</strong> Run same tests on multiple browsers simultaneously</li>
+                            <li><strong>Browser-specific Handling:</strong> Different capabilities and configurations</li>
+                            <li><strong>Version Testing:</strong> Test on different browser versions</li>
+                        </ul>
+                        <strong>Implementation:</strong><br>
+                        <code>
+                        @pytest.fixture(params=['chrome', 'firefox', 'safari'])<br>
+                        def browser(request):<br>
+                        &nbsp;&nbsp;if request.param == 'chrome':<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;return webdriver.Chrome()<br>
+                        &nbsp;&nbsp;elif request.param == 'firefox':<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;return webdriver.Firefox()
+                        </code>
+                    </div>
+                </li>
+                
+                <li><strong>"How do you handle test reporting and logging?"</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>Built-in Reports:</strong> TestNG HTML reports, Pytest HTML plugin</li>
+                            <li><strong>Advanced Reporting:</strong> Allure, ExtentReports for rich HTML reports</li>
+                            <li><strong>Screenshots:</strong> Capture on test failure for debugging</li>
+                            <li><strong>Logging Levels:</strong> INFO, DEBUG, ERROR with proper formatting</li>
+                            <li><strong>CI Integration:</strong> Publish reports to build servers</li>
+                            <li><strong>Real-time Monitoring:</strong> Dashboard integration for live test status</li>
+                        </ul>
+                        <strong>Features I Include:</strong><br>
+                        • Test execution trends<br>
+                        • Failure analysis with screenshots<br>
+                        • Performance metrics<br>
+                        • Environment details<br>
+                        • Test coverage reports
+                    </div>
+                </li>
+                
+                <li><strong>"What's your approach to maintaining automation scripts?"</strong>
+                    <div class="tip">
+                        <strong>Answer:</strong>
+                        <ul>
+                            <li><strong>Regular Review:</strong> Weekly script health checks</li>
+                            <li><strong>Modular Design:</strong> Reusable components to minimize changes</li>
+                            <li><strong>Version Control:</strong> Git branching strategy for script changes</li>
+                            <li><strong>Stable Locators:</strong> Use ID/Name over XPath when possible</li>
+                            <li><strong>Environment Sync:</strong> Keep test environment aligned with production</li>
+                            <li><strong>Documentation:</strong> Maintain script documentation and test data</li>
+                            <li><strong>Refactoring:</strong> Regular code cleanup and optimization</li>
+                        </ul>
+                        <strong>Maintenance Schedule:</strong><br>
+                        • Daily: Monitor test failures<br>
+                        • Weekly: Update broken locators<br>
+                        • Monthly: Code review and refactoring<br>
+                        • Quarterly: Framework updates and improvements
+                    </div>
+                </li>
+            </ol>
+
+            <div class="tip">
+                💡 <strong>Interview Tips:</strong>
+                <ul>
+                    <li><strong>Show code examples:</strong> Be ready to write simple automation scripts</li>
+                    <li><strong>Discuss real projects:</strong> Talk about actual automation challenges you've solved</li>
+                    <li><strong>Know the tools:</strong> Understand pros/cons of different automation tools</li>
+                    <li><strong>Think beyond scripting:</strong> Discuss strategy, maintenance, and ROI</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visitor Counter Script -->
+    <script>
+        // Improved visitor counter - counts unique sessions only
+        function updateVisitorCount() {
+            const page = 'automation-qa-course';
+            const sessionKey = page + '-session';
+            const visitorsKey = page + '-visitors';
+            const lastVisitKey = page + '-lastVisit';
+            
+            // Get current session and visitor count
+            const currentSession = sessionStorage.getItem(sessionKey);
+            let visitors = parseInt(localStorage.getItem(visitorsKey)) || 0;
+            const lastVisit = localStorage.getItem(lastVisitKey);
+            const now = Date.now();
+            const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+            
+            // Check if this is a new session (not visited in this browser session)
+            // OR if last visit was more than 1 hour ago (new session)
+            const isNewSession = !currentSession || 
+                                 !lastVisit || 
+                                 (now - parseInt(lastVisit)) > oneHour;
+            
+            if (isNewSession) {
+                // Increment visitor count for new session
+                visitors += 1;
+                localStorage.setItem(visitorsKey, visitors);
+                localStorage.setItem(lastVisitKey, now.toString());
+                sessionStorage.setItem(sessionKey, 'visited');
+                
+                // Show "New visitor!" message briefly
+                showNewVisitorMessage();
+            }
+            
+            // Update display
+            document.getElementById('visitorCount').textContent = visitors;
+            
+            // Add animation
+            animateCounter();
+        }
+        
+        function showNewVisitorMessage() {
+            const counter = document.querySelector('.visitor-counter');
+            const originalText = counter.innerHTML;
+            
+            // Briefly show "New visitor!" message
+            counter.innerHTML = '🎉 Welcome new visitor!';
+            counter.style.background = '#d4edda';
+            counter.style.borderColor = '#28a745';
+            counter.style.color = '#155724';
+            
+            setTimeout(() => {
+                counter.innerHTML = originalText;
+                counter.style.background = '#f8f9fa';
+                counter.style.borderColor = '#11998e';
+                counter.style.color = '#11998e';
+            }, 2000);
+        }
+        
+        // Add animation to the counter
+        function animateCounter() {
+            const counter = document.getElementById('visitorCount');
+            counter.style.transform = 'scale(1.2)';
+            counter.style.color = '#e74c3c';
+            
+            setTimeout(() => {
+                counter.style.transform = 'scale(1)';
+                counter.style.color = '#11998e';
+            }, 300);
+        }
+        
+        // Update count when page loads
+        window.addEventListener('load', updateVisitorCount);
+        
+        // Add page visibility change detection
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                // Page became visible - check if we need to update count
+                // (useful when user returns to tab after a long time)
+                const now = Date.now();
+                const lastVisit = localStorage.getItem('automation-qa-course-lastVisit');
+                const oneHour = 60 * 60 * 1000;
+                
+                if (lastVisit && (now - parseInt(lastVisit)) > oneHour) {
+                    // More than 1 hour passed, treat as new session
+                    sessionStorage.removeItem('automation-qa-course-session');
+                    updateVisitorCount();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

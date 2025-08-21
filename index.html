@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete QA Testing Courses - Manual & Automation</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #11998e 100%);
+            color: #333;
+            margin: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Navigation Bar */
+        .nav-bar {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .visitor-counter {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 2px solid #667eea;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        /* Header */
+        .main-header {
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .main-header h1 {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .main-header p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .visitor-stats {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 3px solid #667eea;
+            font-weight: bold;
+            color: #667eea;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Course Cards */
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .course-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
+        
+        .manual-card {
+            border-image: linear-gradient(135deg, #667eea, #764ba2) 1;
+        }
+        
+        .automation-card {
+            border-image: linear-gradient(135deg, #11998e, #38ef7d) 1;
+        }
+        
+        .course-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .course-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .manual-card .course-title {
+            color: #667eea;
+        }
+        
+        .automation-card .course-title {
+            color: #11998e;
+        }
+        
+        .course-description {
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .course-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .course-features li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .course-features li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .course-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .manual-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .automation-btn {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+        }
+        
+        .course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            .nav-bar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-btn {
+                padding: 0.8rem 2rem;
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .main-header {
+                padding: 2rem 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .main-header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-header p {
+                font-size: 1.1rem;
+            }
+            
+            .courses-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .course-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .course-icon {
+                font-size: 3rem;
+            }
+            
+            .course-title {
+                font-size: 1.7rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container { padding: 5px; }
+            
+            .main-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .course-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .course-features li {
+                font-size: 0.9rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 5px; }
+            .nav-bar { padding: 0.5rem; }
+            .nav-btn { padding: 0.6rem 1.5rem; }
+            
+            .course-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .course-features li {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .course-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .course-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">🏠 Home</a>
+                <a href="comprehensive-manual-qa-course.html" class="nav-btn">📚 Manual QA</a>
+                <a href="comprehensive-automation-qa-course.html" class="nav-btn">🤖 Automation QA</a>
+                <a href="excel-for-testing.html" class="nav-btn">📊 Excel for Testing</a>
+            </div>
+            <div class="visitor-counter">
+                👥 Visitors: <span id="visitorCount">Loading...</span>
+            </div>
+        </nav>
+
+        <header class="main-header">
+            <h1>🎯 Complete QA Testing Courses</h1>
+            <p>Master Software Testing from Beginner to Professional Level</p>
+            <p>Comprehensive Manual & Automation Testing with Real Examples</p>
+            <div class="visitor-stats">
+                🌟 Total Visitors: <span id="totalVisitors">Loading...</span>
+            </div>
+        </header>
+        
+        <div class="courses-container">
+            <!-- Manual QA Course Card -->
+            <div class="course-card manual-card">
+                <div class="course-icon">📚</div>
+                <h2 class="course-title">Manual QA Testing</h2>
+                <p class="course-description">
+                    Learn the fundamentals of software testing with hands-on examples, 
+                    real-world scenarios, and industry best practices.
+                </p>
+                <ul class="course-features">
+                    <li>Complete SDLC & STLC understanding</li>
+                    <li>Test case design techniques</li>
+                    <li>Bug life cycle & reporting</li>
+                    <li>Exploratory & usability testing</li>
+                    <li>Mobile & web testing strategies</li>
+                    <li>Industry tools (JIRA, TestRail)</li>
+                    <li>Interview questions with answers</li>
+                    <li>Real GUI examples & scenarios</li>
+                </ul>
+                <a href="comprehensive-manual-qa-course.html" class="course-btn manual-btn">
+                    Start Manual QA Course 🚀
+                </a>
+            </div>
+            
+            <!-- Automation QA Course Card -->
+            <div class="course-card automation-card">
+                <div class="course-icon">🤖</div>
+                <h2 class="course-title">Automation QA Testing</h2>
+                <p class="course-description">
+                    Master test automation with popular tools, frameworks, and 
+                    programming languages used in the industry.
+                </p>
+                <ul class="course-features">
+                    <li>Selenium, Cypress & Playwright</li>
+                    <li>Python, Java & JavaScript basics</li>
+                    <li>Test frameworks & design patterns</li>
+                    <li>CI/CD integration & deployment</li>
+                    <li>Page Object Model implementation</li>
+                    <li>Advanced reporting & logging</li>
+                    <li>Interview questions with code examples</li>
+                    <li>Best practices & maintenance</li>
+                </ul>
+                <a href="comprehensive-automation-qa-course.html" class="course-btn automation-btn">
+                    Start Automation QA Course 🚀
+                </a>
+            </div>
+        </div>
+        
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <h2 style="color: #667eea; margin-bottom: 1rem;">📊 Course Statistics & Content Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="manualVisitors">0</span>
+                    <div class="stat-label">Manual QA Visitors</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="automationVisitors">0</span>
+                    <div class="stat-label">Automation QA Visitors</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10</span>
+                    <div class="stat-label">Manual QA Topics</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <div class="stat-label">Automation Topics</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25+</span>
+                    <div class="stat-label">Manual Interview Q&A</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">30+</span>
+                    <div class="stat-label">Automation Interview Q&A</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <div class="stat-label">Real GUI Examples</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <div class="stat-label">Code Examples</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <div class="stat-label">Programming Languages</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12+</span>
+                    <div class="stat-label">Testing Tools Covered</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5+</span>
+                    <div class="stat-label">Test Frameworks</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">Free & Complete</div>
+                </div>
+            </div>
+            
+            <!-- Detailed Content Breakdown -->
+            <div style="margin-top: 3rem;">
+                <h3 style="color: #667eea; text-align: center; margin-bottom: 2rem;">📋 Detailed Content Breakdown</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                    <!-- Manual QA Content -->
+                    <div style="background: linear-gradient(135deg, #f8f9ff, #e6eaff); padding: 2rem; border-radius: 15px; border: 2px solid #667eea;">
+                        <h4 style="color: #667eea; margin-bottom: 1rem;">📚 Manual QA Course Content</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Topics:</strong> 10 comprehensive modules</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Examples:</strong> Facebook, Instagram, Netflix, Amazon</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Test Cases:</strong> 8+ detailed examples</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Bug Reports:</strong> Professional templates</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Tools:</strong> JIRA, TestRail, Postman, Snagit</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Testing Types:</strong> 8+ different approaches</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Interview Questions:</strong> 25+ with detailed answers</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Automation QA Content -->
+                    <div style="background: linear-gradient(135deg, #f0fff4, #e6ffed); padding: 2rem; border-radius: 15px; border: 2px solid #11998e;">
+                        <h4 style="color: #11998e; margin-bottom: 1rem;">🤖 Automation QA Course Content</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Topics:</strong> 8 comprehensive modules</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Tools:</strong> Selenium, Cypress, Playwright</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Languages:</strong> Python, Java, JavaScript</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Frameworks:</strong> Pytest, TestNG, Mocha, Jest</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Code Examples:</strong> 20+ working scripts</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>CI/CD:</strong> GitHub Actions, Jenkins</li>
+                            <li style="padding: 0.3rem 0; color: #555;"><strong>Interview Questions:</strong> 30+ with code examples</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Learning Path -->
+                <div style="margin-top: 2rem; text-align: center; background: linear-gradient(135deg, #fff8e1, #ffecb3); padding: 2rem; border-radius: 15px; border: 2px solid #ffc107;">
+                    <h4 style="color: #e65100; margin-bottom: 1rem;">🎯 Recommended Learning Path</h4>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                        <div style="background: white; padding: 1rem; border-radius: 10px; border: 2px solid #667eea; min-width: 150px;">
+                            <div style="font-size: 2rem;">1️⃣</div>
+                            <div style="font-weight: bold; color: #667eea;">Manual QA</div>
+                            <div style="font-size: 0.9rem; color: #666;">Foundation</div>
+                        </div>
+                        <div style="font-size: 2rem; color: #ffc107;">→</div>
+                        <div style="background: white; padding: 1rem; border-radius: 10px; border: 2px solid #11998e; min-width: 150px;">
+                            <div style="font-size: 2rem;">2️⃣</div>
+                            <div style="font-weight: bold; color: #11998e;">Automation QA</div>
+                            <div style="font-size: 0.9rem; color: #666;">Advanced Skills</div>
+                        </div>
+                        <div style="font-size: 2rem; color: #ffc107;">→</div>
+                        <div style="background: white; padding: 1rem; border-radius: 10px; border: 2px solid #e74c3c; min-width: 150px;">
+                            <div style="font-size: 2rem;">3️⃣</div>
+                            <div style="font-weight: bold; color: #e74c3c;">Job Ready</div>
+                            <div style="font-size: 0.9rem; color: #666;">Professional</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills Gained -->
+                <div style="margin-top: 2rem;">
+                    <h4 style="color: #667eea; text-align: center; margin-bottom: 1.5rem;">🎓 Skills You'll Gain</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div style="background: #e3f2fd; padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+                            <div style="font-weight: bold; color: #1976d2;">Testing Fundamentals</div>
+                            <div style="font-size: 0.9rem; color: #666;">SDLC, STLC, Test Design</div>
+                        </div>
+                        <div style="background: #f3e5f5; padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🐛</div>
+                            <div style="font-weight: bold; color: #7b1fa2;">Bug Tracking</div>
+                            <div style="font-size: 0.9rem; color: #666;">JIRA, Bug Life Cycle</div>
+                        </div>
+                        <div style="background: #e8f5e8; padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖</div>
+                            <div style="font-weight: bold; color: #388e3c;">Test Automation</div>
+                            <div style="font-size: 0.9rem; color: #666;">Selenium, Cypress, Scripts</div>
+                        </div>
+                        <div style="background: #fff3e0; padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">💼</div>
+                            <div style="font-weight: bold; color: #f57c00;">Interview Ready</div>
+                            <div style="font-size: 0.9rem; color: #666;">55+ Q&A, Real Examples</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Improved visitor counter management - more accurate tracking
+        function updateVisitorStats() {
+            // Get individual course visitors (only count unique sessions)
+            const manualVisitors = localStorage.getItem('manual-qa-course-visitors') || 0;
+            const automationVisitors = localStorage.getItem('automation-qa-course-visitors') || 0;
+            
+            // Calculate total unique visitors
+            const totalVisitors = parseInt(manualVisitors) + parseInt(automationVisitors);
+            
+            // Update display
+            document.getElementById('manualVisitors').textContent = manualVisitors;
+            document.getElementById('automationVisitors').textContent = automationVisitors;
+            document.getElementById('totalVisitors').textContent = totalVisitors;
+            
+            // Add animation to numbers
+            animateNumbers();
+        }
+        
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.stat-number');
+            numbers.forEach((number, index) => {
+                // Add staggered animation delay
+                setTimeout(() => {
+                    number.style.transform = 'scale(1.1)';
+                    number.style.color = '#e74c3c';
+                    
+                    setTimeout(() => {
+                        number.style.transform = 'scale(1)';
+                        number.style.color = '#667eea';
+                    }, 300);
+                }, index * 100);
+            });
+        }
+        
+        // Track landing page visit (separate from course visits)
+        function trackLandingPageVisit() {
+            const sessionKey = 'landing-page-session';
+            const visitorsKey = 'landing-page-visitors';
+            const lastVisitKey = 'landing-page-lastVisit';
+            
+            const currentSession = sessionStorage.getItem(sessionKey);
+            const now = Date.now();
+            const lastVisit = localStorage.getItem(lastVisitKey);
+            const oneHour = 60 * 60 * 1000;
+            
+            // Only count as new visitor if:
+            // 1. Never visited this session, AND
+            // 2. Last visit was more than 1 hour ago (or never visited)
+            const isNewSession = !currentSession || 
+                                 !lastVisit || 
+                                 (now - parseInt(lastVisit)) > oneHour;
+            
+            if (isNewSession) {
+                let landingVisitors = parseInt(localStorage.getItem(visitorsKey)) || 0;
+                landingVisitors += 1;
+                localStorage.setItem(visitorsKey, landingVisitors);
+                localStorage.setItem(lastVisitKey, now.toString());
+                sessionStorage.setItem(sessionKey, 'visited');
+                
+                // Show welcome message for new visitors
+                showWelcomeMessage();
+            }
+            
+            // Update navigation counter
+            updateNavigationCounter();
+        }
+        
+        function updateNavigationCounter() {
+            const visitorsKey = 'landing-page-visitors';
+            const visitors = parseInt(localStorage.getItem(visitorsKey)) || 0;
+            const navCounter = document.getElementById('visitorCount');
+            if (navCounter) {
+                navCounter.textContent = visitors;
+                animateNavigationCounter();
+            }
+        }
+        
+        function animateNavigationCounter() {
+            const counter = document.getElementById('visitorCount');
+            if (counter) {
+                counter.style.transform = 'scale(1.2)';
+                counter.style.color = '#e74c3c';
+                
+                setTimeout(() => {
+                    counter.style.transform = 'scale(1)';
+                    counter.style.color = '#667eea';
+                }, 300);
+            }
+        }
+        
+        function showWelcomeMessage() {
+            const header = document.querySelector('.main-header');
+            const welcomeMsg = document.createElement('div');
+            welcomeMsg.innerHTML = '🎉 Welcome to our QA Testing Courses!';
+            welcomeMsg.style.cssText = `
+                background: #d4edda;
+                color: #155724;
+                padding: 0.8rem 1.5rem;
+                border-radius: 25px;
+                margin-top: 1rem;
+                font-weight: 600;
+                border: 2px solid #28a745;
+                animation: fadeInUp 0.5s ease-out;
+            `;
+            
+            header.appendChild(welcomeMsg);
+            
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                welcomeMsg.style.opacity = '0';
+                welcomeMsg.style.transform = 'translateY(-20px)';
+                setTimeout(() => welcomeMsg.remove(), 500);
+            }, 3000);
+        }
+        
+        // Update stats when page loads
+        window.addEventListener('load', function() {
+            trackLandingPageVisit();
+            updateVisitorStats();
+        });
+        
+        // Refresh stats every 10 seconds (less frequent to reduce overhead)
+        setInterval(updateVisitorStats, 10000);
+        
+        // Add click tracking for course buttons with analytics
+        document.querySelectorAll('.course-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                // Track which course was clicked (for future analytics)
+                const courseName = this.href.includes('manual') ? 'manual' : 'automation';
+                console.log(`User clicked: ${courseName} course button`);
+                
+                // Could be extended to send analytics to a server
+                // trackCourseClick(courseName);
+            });
+        });
+        
+        // Add useful debugging info (remove in production)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('🔧 Debug Mode: Visitor tracking active');
+            console.log('📊 Current stats:', {
+                manual: localStorage.getItem('manual-qa-course-visitors'),
+                automation: localStorage.getItem('automation-qa-course-visitors'),
+                landing: localStorage.getItem('landing-page-visitors')
+            });
+        }
+    </script>
+</body>
+</html>
